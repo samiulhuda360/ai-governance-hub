@@ -1,0 +1,313 @@
+{
+ "rules": {
+  "dev": {
+   "cases": 45,
+   "tier_accuracy": 100.0,
+   "high_risk_recall": 100.0,
+   "high_risk_precision": 100.0,
+   "high_risk_missed": 0,
+   "annex_area_accuracy_on_high": 100.0,
+   "prohibited_recall": 100.0,
+   "prohibited_precision": 100.0,
+   "regime_precision": 100.0,
+   "regime_recall": 100.0,
+   "regime_counts": {
+    "eu_gdpr": 28,
+    "uk_gdpr": 3,
+    "au_app": 2,
+    "nz_ipp": 1,
+    "us_state": 3
+   },
+   "risk_level_accuracy": 100.0,
+   "risk_level_under_rated": 0,
+   "misses": []
+  },
+  "holdout": {
+   "cases": 20,
+   "tier_accuracy": 100.0,
+   "high_risk_recall": 100.0,
+   "high_risk_precision": 100.0,
+   "high_risk_missed": 0,
+   "annex_area_accuracy_on_high": 100.0,
+   "prohibited_recall": 100.0,
+   "prohibited_precision": 100.0,
+   "regime_precision": 100.0,
+   "regime_recall": 100.0,
+   "regime_counts": {
+    "eu_gdpr": 11,
+    "uk_gdpr": 5,
+    "au_app": 1,
+    "nz_ipp": 1,
+    "us_state": 2
+   },
+   "risk_level_accuracy": 100.0,
+   "risk_level_under_rated": 0,
+   "misses": []
+  },
+  "all": {
+   "cases": 65,
+   "tier_accuracy": 100.0,
+   "high_risk_recall": 100.0,
+   "high_risk_precision": 100.0,
+   "high_risk_missed": 0,
+   "annex_area_accuracy_on_high": 100.0,
+   "prohibited_recall": 100.0,
+   "prohibited_precision": 100.0,
+   "regime_precision": 100.0,
+   "regime_recall": 100.0,
+   "regime_counts": {
+    "eu_gdpr": 39,
+    "uk_gdpr": 8,
+    "au_app": 3,
+    "nz_ipp": 2,
+    "us_state": 5
+   },
+   "risk_level_accuracy": 100.0,
+   "risk_level_under_rated": 0,
+   "misses": []
+  }
+ },
+ "prefill": {
+  "dev": {
+   "fields": {
+    "use_area": 82.2,
+    "decision_mode": 80.0,
+    "processing_region": 86.7,
+    "data_categories": 71.1,
+    "affected": 64.4,
+    "people_regions": 86.7,
+    "org_regions": 97.8,
+    "flags": 35.6,
+    "flags_precision": 68.3,
+    "flags_recall": 92.2
+   },
+   "end_to_end": {
+    "cases": 45,
+    "tier_accuracy": 91.1,
+    "high_risk_recall": 100.0,
+    "high_risk_precision": 88.2,
+    "high_risk_missed": 0,
+    "annex_area_accuracy_on_high": 80.0,
+    "prohibited_recall": 100.0,
+    "prohibited_precision": 100.0,
+    "regime_precision": 100.0,
+    "regime_recall": 97.3,
+    "regime_counts": {
+     "eu_gdpr": 28,
+     "uk_gdpr": 3,
+     "au_app": 2,
+     "nz_ipp": 1,
+     "us_state": 3
+    },
+    "risk_level_accuracy": 95.6,
+    "risk_level_under_rated": 0,
+    "misses": [
+     {
+      "id": "dev-23",
+      "label": "limited",
+      "got": "limited",
+      "label_level": "medium",
+      "got_level": "high"
+     },
+     {
+      "id": "dev-29",
+      "label": "limited",
+      "got": "high",
+      "label_level": "high",
+      "got_level": "high"
+     },
+     {
+      "id": "dev-32",
+      "label": "minimal",
+      "got": "high",
+      "label_level": "medium",
+      "got_level": "high"
+     },
+     {
+      "id": "dev-34",
+      "label": "minimal",
+      "got": "limited",
+      "label_level": "medium",
+      "got_level": "medium"
+     },
+     {
+      "id": "dev-44",
+      "label": "minimal",
+      "got": "limited",
+      "label_level": "medium",
+      "got_level": "medium"
+     }
+    ]
+   }
+  },
+  "holdout": {
+   "fields": {
+    "use_area": 85.0,
+    "decision_mode": 90.0,
+    "processing_region": 90.0,
+    "data_categories": 85.0,
+    "affected": 55.0,
+    "people_regions": 65.0,
+    "org_regions": 80.0,
+    "flags": 40.0,
+    "flags_precision": 70.2,
+    "flags_recall": 97.1
+   },
+   "end_to_end": {
+    "cases": 20,
+    "tier_accuracy": 90.0,
+    "high_risk_recall": 100.0,
+    "high_risk_precision": 87.5,
+    "high_risk_missed": 0,
+    "annex_area_accuracy_on_high": 85.7,
+    "prohibited_recall": 66.7,
+    "prohibited_precision": 100.0,
+    "regime_precision": 88.2,
+    "regime_recall": 75.0,
+    "regime_counts": {
+     "eu_gdpr": 11,
+     "uk_gdpr": 5,
+     "au_app": 1,
+     "nz_ipp": 1,
+     "us_state": 2
+    },
+    "risk_level_accuracy": 85.0,
+    "risk_level_under_rated": 1,
+    "misses": [
+     {
+      "id": "hold-03",
+      "label": "prohibited",
+      "got": "high",
+      "label_level": "prohibited",
+      "got_level": "high"
+     },
+     {
+      "id": "hold-13",
+      "label": "limited",
+      "got": "limited",
+      "label_level": "medium",
+      "got_level": "high"
+     },
+     {
+      "id": "hold-16",
+      "label": "minimal",
+      "got": "minimal",
+      "label_level": "low",
+      "got_level": "medium"
+     },
+     {
+      "id": "hold-18",
+      "label": "minimal",
+      "got": "limited",
+      "label_level": "high",
+      "got_level": "high"
+     }
+    ]
+   }
+  },
+  "all": {
+   "fields": {
+    "use_area": 83.1,
+    "decision_mode": 83.1,
+    "processing_region": 87.7,
+    "data_categories": 75.4,
+    "affected": 61.5,
+    "people_regions": 80.0,
+    "org_regions": 92.3,
+    "flags": 36.9,
+    "flags_precision": 68.9,
+    "flags_recall": 93.7
+   },
+   "end_to_end": {
+    "cases": 65,
+    "tier_accuracy": 90.8,
+    "high_risk_recall": 100.0,
+    "high_risk_precision": 88.0,
+    "high_risk_missed": 0,
+    "annex_area_accuracy_on_high": 81.8,
+    "prohibited_recall": 88.9,
+    "prohibited_precision": 100.0,
+    "regime_precision": 96.2,
+    "regime_recall": 89.5,
+    "regime_counts": {
+     "eu_gdpr": 39,
+     "uk_gdpr": 8,
+     "au_app": 3,
+     "nz_ipp": 2,
+     "us_state": 5
+    },
+    "risk_level_accuracy": 92.3,
+    "risk_level_under_rated": 1,
+    "misses": [
+     {
+      "id": "dev-23",
+      "label": "limited",
+      "got": "limited",
+      "label_level": "medium",
+      "got_level": "high"
+     },
+     {
+      "id": "dev-29",
+      "label": "limited",
+      "got": "high",
+      "label_level": "high",
+      "got_level": "high"
+     },
+     {
+      "id": "dev-32",
+      "label": "minimal",
+      "got": "high",
+      "label_level": "medium",
+      "got_level": "high"
+     },
+     {
+      "id": "dev-34",
+      "label": "minimal",
+      "got": "limited",
+      "label_level": "medium",
+      "got_level": "medium"
+     },
+     {
+      "id": "dev-44",
+      "label": "minimal",
+      "got": "limited",
+      "label_level": "medium",
+      "got_level": "medium"
+     },
+     {
+      "id": "hold-03",
+      "label": "prohibited",
+      "got": "high",
+      "label_level": "prohibited",
+      "got_level": "high"
+     },
+     {
+      "id": "hold-13",
+      "label": "limited",
+      "got": "limited",
+      "label_level": "medium",
+      "got_level": "high"
+     },
+     {
+      "id": "hold-16",
+      "label": "minimal",
+      "got": "minimal",
+      "label_level": "low",
+      "got_level": "medium"
+     },
+     {
+      "id": "hold-18",
+      "label": "minimal",
+      "got": "limited",
+      "label_level": "high",
+      "got_level": "high"
+     }
+    ]
+   }
+  }
+ },
+ "model": "gemini-flash-lite-latest",
+ "recorded_replies": 65,
+ "unreadable_replies": 0,
+ "replayed_from_cache_this_run": 65
+}
