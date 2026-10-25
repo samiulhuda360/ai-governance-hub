@@ -116,3 +116,9 @@ def test_parse_json_repairs_bare_keys() -> None:
 def test_prefill_without_key_or_recording_says_so() -> None:
     p = prefill("A brand new description nobody has recorded.", LLM(offline=True))
     assert p.error.startswith("Pre-fill needs a model key")
+
+
+def test_unknown_team_is_rejected(client: TestClient) -> None:
+    signin(client, "Emma Clarke")
+    r = client.post("/intake", data={"title": "Claims drafts", "purpose": "Draft replies", "team": "Claims", "use_area": "customer_service", "decision_mode": "suggests", "processing_region": "EU"})
+    assert "unknown team" in r.text

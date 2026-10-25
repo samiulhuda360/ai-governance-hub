@@ -147,8 +147,14 @@ def create_app(db_path: str | Path | None = None) -> FastAPI:
         if p is None or p.error:
             err = p.error if p else "Paste a description first."
             return page(request, "intake.html", **form_ctx({"team": me["team"], "org_regions": ["EU", "UK"]}, [], err, text))
-        values = {"team": me["team"], **p.values}
-        return page(request, "intake.html", **form_ctx(values, p.suggested, "", text, p.dropped))
+        values = {**p.values, "team": me["team"]}
+        teams = {r["name"] for r in conn.execute("SELECT name FROM teams")}
+        suggested = list(p.suggested)
+        if p.values.get("team") in teams:
+            values["team"] = p.values["team"]
+        elif "team" in suggested:
+            suggested.remove("team")  # the model named a team we do not have: keep the requester's own
+        return page(request, "intake.html", **form_ctx(values, suggested, "", text, p.dropped))
 
     async def parse_form(request: Request) -> tuple[dict[str, Any], list[str], set[str]]:
         form = await request.form()
@@ -176,6 +182,8 @@ def create_app(db_path: str | Path | None = None) -> FastAPI:
         except ValidationError as e:
             return page(request, "intake.html", **form_ctx(values, suggested, "Please check the form: " + "; ".join(f"{x['loc'][0]}: {x['msg']}" for x in e.errors())))
         problems = validate_choices(it)
+        if conn.execute("SELECT 1 FROM teams WHERE name = ?", (it.team,)).fetchone() is None:
+            problems.append(f"unknown team {it.team!r}")
         if problems:
             return page(request, "intake.html", **form_ctx(values, suggested, "; ".join(problems)))
         try:

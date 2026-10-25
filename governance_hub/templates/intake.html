@@ -22,7 +22,7 @@
     <fieldset><legend>The idea</legend>
       <div class="{{ wrap('title') }}"><label for="title">Short name</label><input type="text" id="title" name="title" value="{{ v.title or '' }}" required>{{ confirm('title') }}</div>
       <div class="{{ wrap('purpose') }}"><label for="purpose">What will the AI do?</label><textarea id="purpose" name="purpose" required>{{ v.purpose or '' }}</textarea>{{ confirm('purpose') }}</div>
-      <div class="{{ wrap('team') }}"><label for="team">Team</label><select id="team" name="team">{% for t in teams %}<option {{ 'selected' if v.team == t }}>{{ t }}</option>{% endfor %}{% if v.team and v.team not in teams %}<option selected>{{ v.team }}</option>{% endif %}</select>{{ confirm('team') }}</div>
+      <div class="{{ wrap('team') }}"><label for="team">Team</label><select id="team" name="team">{% for t in teams %}<option {{ 'selected' if v.team == t }}>{{ t }}</option>{% endfor %}</select>{{ confirm('team') }}</div>
       <div class="{{ wrap('use_area') }}"><label for="use_area">What kind of job does it do?</label><select id="use_area" name="use_area">{% for k, label in USE_AREAS.items() %}<option value="{{ k }}" {{ 'selected' if v.use_area == k }}>{{ label }}</option>{% endfor %}</select>{{ confirm('use_area') }}</div>
     </fieldset>
     <fieldset class="{{ wrap('data_categories') }}"><legend>Which information does it use?</legend>
