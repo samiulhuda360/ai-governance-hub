@@ -1,0 +1,602 @@
+[
+  {
+    "id": "hold-01",
+    "split": "holdout",
+    "sector": "education",
+    "text": "I'm Laura, head of online teaching at Fernhill Language School in Galway, Ireland. We'd like to switch on a feature in our video lesson platform that watches students' faces through their webcams and tells the tutor in real time whether each learner seems bored, confused or frustrated. At the end of term it would also give every student a 'mood and engagement' report that tutors use when writing progress notes. Our students are adults across Ireland. The vendor runs it on their servers in Germany. About 40 tutors would use it.",
+    "intake": {
+      "title": "Webcam mood tracking in online lessons",
+      "purpose": "Tell tutors in real time whether students look bored, confused or frustrated, and produce an end-of-term mood and engagement report per student.",
+      "team": "Online Teaching",
+      "use_area": "emotion_recognition",
+      "data_categories": ["personal", "biometric"],
+      "affected": ["customers"],
+      "decision_mode": "suggests",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": ["EU"],
+      "org_regions": ["EU"],
+      "expected_users": 40,
+      "hours_saved_per_week": 0,
+      "flags": ["workplace_or_education", "about_individuals", "profiling"]
+    },
+    "labels": {
+      "tier": "prohibited",
+      "annex_area": null,
+      "regimes": ["eu_gdpr"],
+      "risk_level": "prohibited",
+      "basis": "Article 5(1)(f) prohibits inferring the emotions of people in education institutions from their faces, and no medical or safety reason applies."
+    }
+  },
+  {
+    "id": "hold-02",
+    "split": "holdout",
+    "sector": "consumer lending",
+    "text": "Hi, this is Mark from the growth team at Quickfund Loans in Rotterdam. We want an AI that scans app activity and connected bank data to spot customers who are behind on rent, gambling heavily or checking their balance again and again late at night. When it finds them, it sends a pop-up offer for an instant short-term loan with a countdown timer and messages like 'only 10 minutes left'. The idea is to reach people at the moment they feel most desperate, because that's when they're most likely to accept. It would run automatically for all our Dutch customers.",
+    "intake": {
+      "title": "Targeted instant-loan pop-ups",
+      "purpose": "Find customers in money trouble from app and bank data and push time-pressured short-term loan offers to them at their most desperate moment.",
+      "team": "Growth",
+      "use_area": "marketing_personalisation",
+      "data_categories": ["personal", "financial"],
+      "affected": ["customers"],
+      "decision_mode": "fully_automatic",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": ["EU"],
+      "org_regions": ["EU"],
+      "expected_users": 0,
+      "hours_saved_per_week": 0,
+      "flags": ["about_individuals", "profiling", "exploits_vulnerability", "manipulative"]
+    },
+    "labels": {
+      "tier": "prohibited",
+      "annex_area": null,
+      "regimes": ["eu_gdpr"],
+      "risk_level": "prohibited",
+      "basis": "Article 5(1)(b) prohibits exploiting people's difficult economic situation to distort their behaviour in a way likely to cause them significant harm."
+    }
+  },
+  {
+    "id": "hold-03",
+    "split": "holdout",
+    "sector": "local government",
+    "text": "I'm Sophie in the housing department of the City of Valmora in Portugal. We'd like a system that gives each tenant in our council flats a 'good neighbour score' built from noise complaints, late rent, caretaker reports and comments on community forums. Tenants with low scores would automatically drop down the list for our sports centre discounts and lose priority for city childcare places. Caseworkers would be able to see the score, but the change in priority would happen on its own. It would cover around 12,000 households.",
+    "intake": {
+      "title": "Good neighbour score for council tenants",
+      "purpose": "Score council tenants on complaints, rent arrears and community behaviour and use low scores to lower their priority for sports discounts and childcare places.",
+      "team": "Housing",
+      "use_area": "public_benefits",
+      "data_categories": ["personal", "financial"],
+      "affected": ["public"],
+      "decision_mode": "fully_automatic",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": ["EU"],
+      "org_regions": ["EU"],
+      "expected_users": 0,
+      "hours_saved_per_week": 0,
+      "flags": ["about_individuals", "profiling", "social_scoring", "public_service_deployer"]
+    },
+    "labels": {
+      "tier": "prohibited",
+      "annex_area": null,
+      "regimes": ["eu_gdpr"],
+      "risk_level": "prohibited",
+      "basis": "Article 5(1)(c) prohibits scoring people on their social behaviour where the score leads to detrimental treatment in unrelated contexts, here sports discounts and childcare places."
+    }
+  },
+  {
+    "id": "hold-04",
+    "split": "holdout",
+    "sector": "logistics",
+    "text": "I'm Daniel in People Operations at Harbourline Logistics, with offices in Leeds and Gdansk. Before each promotion round our panel spends days reading files. We'd like Microsoft Copilot to prepare a one-page brief for each eligible employee: it pulls their ticket history, attendance and peer feedback, and gives each person a reliability score and a productivity score from 1 to 10. The panel still makes every decision; the tool only gets the paperwork ready. About 600 staff across the UK and Poland are eligible each year.",
+    "intake": {
+      "title": "Promotion panel briefs with staff scores",
+      "purpose": "Prepare a one-page brief per eligible employee for the promotion panel, including reliability and productivity scores from ticket history, attendance and peer feedback.",
+      "team": "People Operations",
+      "use_area": "workforce_management",
+      "data_categories": ["personal"],
+      "affected": ["staff"],
+      "decision_mode": "suggests",
+      "vendor": "Microsoft",
+      "model": "Copilot",
+      "processing_region": "EU",
+      "people_regions": ["UK", "EU"],
+      "org_regions": ["UK", "EU"],
+      "expected_users": 0,
+      "hours_saved_per_week": 0,
+      "flags": ["about_individuals", "profiling", "workplace_or_education", "narrow_procedural_task"]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "employment",
+      "regimes": ["eu_gdpr", "uk_gdpr"],
+      "risk_level": "high",
+      "basis": "Annex III point 4(b) covers promotion decisions and evaluating staff performance, and the Article 6(3) preparatory-task exception cannot apply because the tool scores individual employees (profiling)."
+    }
+  },
+  {
+    "id": "hold-05",
+    "split": "holdout",
+    "sector": "higher education",
+    "text": "Hello, I'm Emma, exams officer at Northlake University of Applied Sciences in Tampere, Finland. We're moving our first-year maths and programming exams online. We want software that watches each student through the webcam and microphone during the exam and flags moments such as looking away from the screen, a second voice in the room or a phone appearing. Flagged clips go to an invigilator, who decides whether to open a misconduct case. Around 3,000 students sit these exams each year, some of them from outside Europe.",
+    "intake": {
+      "title": "Online exam invigilation flags",
+      "purpose": "Watch students through webcam and microphone during online exams and flag suspicious moments for an invigilator to review.",
+      "team": "Examinations Office",
+      "use_area": "education_assessment",
+      "data_categories": ["personal", "biometric"],
+      "affected": ["customers"],
+      "decision_mode": "suggests",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": ["EU", "other"],
+      "org_regions": ["EU"],
+      "expected_users": 3000,
+      "hours_saved_per_week": 0,
+      "flags": ["about_individuals", "workplace_or_education"]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "education",
+      "regimes": ["eu_gdpr"],
+      "risk_level": "high",
+      "basis": "Annex III point 3(d) lists AI used to monitor and detect prohibited behaviour of students during tests."
+    }
+  },
+  {
+    "id": "hold-06",
+    "split": "holdout",
+    "sector": "insurance",
+    "text": "I'm Olivia, underwriting lead at Shamrock Mutual in Dublin. We sell term life cover in Ireland and Northern Ireland. We'd like an AI model to read each applicant's health questionnaire and GP report and set the premium automatically, including adding a loading or declining cover for some conditions. Underwriters would spot-check a sample each week and look at any complaints. We expect about 20,000 applications a year, and it should save our team around 60 hours a week.",
+    "intake": {
+      "title": "Automatic life cover pricing",
+      "purpose": "Read applicants' health questionnaires and GP reports and set life insurance premiums, loadings or declines automatically.",
+      "team": "Underwriting",
+      "use_area": "insurance_pricing",
+      "data_categories": ["personal", "health", "financial"],
+      "affected": ["customers"],
+      "decision_mode": "acts_with_review",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": ["EU", "UK"],
+      "org_regions": ["EU"],
+      "expected_users": 0,
+      "hours_saved_per_week": 60,
+      "flags": ["about_individuals", "profiling"]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "essential_services",
+      "regimes": ["eu_gdpr", "uk_gdpr"],
+      "risk_level": "high",
+      "basis": "Annex III point 5(c) covers risk assessment and pricing of natural persons for life and health insurance."
+    }
+  },
+  {
+    "id": "hold-07",
+    "split": "holdout",
+    "sector": "water utility",
+    "text": "This is Peter from operations at Aguaclara Water Services, which supplies drinking water to about 400,000 people around Valencia, Spain. We want an AI controller that reads sensors across the network and directly adjusts chlorine dosing and closes valves when it predicts contamination or a pipe burst, without waiting for the control room. Operators can override it afterwards, but it acts on its own within seconds. No customer data is involved, only sensor readings from the pipes and treatment plants.",
+    "intake": {
+      "title": "AI control of chlorine dosing and valves",
+      "purpose": "Adjust chlorine dosing and close valves automatically when the AI predicts contamination or a pipe burst in the drinking water network.",
+      "team": "Network Operations",
+      "use_area": "critical_infrastructure",
+      "data_categories": [],
+      "affected": ["public"],
+      "decision_mode": "acts_with_review",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": ["EU"],
+      "org_regions": ["EU"],
+      "expected_users": 0,
+      "hours_saved_per_week": 0,
+      "flags": []
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "critical_infrastructure",
+      "regimes": [],
+      "risk_level": "high",
+      "basis": "Annex III point 2 covers AI used as a safety component in the management and operation of the supply of water."
+    }
+  },
+  {
+    "id": "hold-08",
+    "split": "holdout",
+    "sector": "public sector contracting",
+    "text": "I'm Thomas, project manager at Brightgate Case Services in Brussels. We've won a contract from a national immigration office in the EU to help process long-stay visa applications. They want an AI tool that reads each application and its supporting papers, checks whether bank statements and letters look genuine, and gives each applicant a risk rating that decides which files get closer checks. Immigration officers make the final decision. That's roughly 50,000 applicants a year, mostly from outside Europe.",
+    "intake": {
+      "title": "Visa application document checks and risk rating",
+      "purpose": "Check visa applications and supporting documents for authenticity and give each applicant a risk rating to route files for closer checks, on behalf of an immigration office.",
+      "team": "Public Sector Projects",
+      "use_area": "migration_border",
+      "data_categories": ["personal", "financial"],
+      "affected": ["public"],
+      "decision_mode": "suggests",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": ["other"],
+      "org_regions": ["EU"],
+      "expected_users": 0,
+      "hours_saved_per_week": 0,
+      "flags": ["about_individuals", "profiling", "public_service_deployer"]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "migration",
+      "regimes": ["eu_gdpr"],
+      "risk_level": "high",
+      "basis": "Annex III point 7(c) covers AI used on behalf of migration authorities to examine visa applications, including assessing the reliability of supporting evidence and risk-rating applicants."
+    }
+  },
+  {
+    "id": "hold-09",
+    "split": "holdout",
+    "sector": "sport and events",
+    "text": "Hi, Chris here from security at Riviera Blues FC in Genoa, Italy. We want cameras at the turnstiles and around the concourse to check every face in the crowd against our list of about 300 fans the club itself has banned for past violence. When there's a match, stewards get an alert on their phones and go and speak to the person. Our home games hold up to 25,000 fans. This is our own club list, not a police one, and the police aren't involved.",
+    "intake": {
+      "title": "Face matching against club banned-fan list",
+      "purpose": "Compare every face in the stadium crowd against the club's list of banned fans and alert stewards to matches.",
+      "team": "Stadium Security",
+      "use_area": "biometric_identification",
+      "data_categories": ["personal", "biometric"],
+      "affected": ["customers", "public"],
+      "decision_mode": "suggests",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": ["EU"],
+      "org_regions": ["EU"],
+      "expected_users": 0,
+      "hours_saved_per_week": 0,
+      "flags": ["about_individuals"]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "biometrics",
+      "regimes": ["eu_gdpr"],
+      "risk_level": "high",
+      "basis": "Annex III point 1(a) covers remote biometric identification; it is not the Article 5(1)(h) ban because a private club runs it for its own purposes, not for law enforcement."
+    }
+  },
+  {
+    "id": "hold-10",
+    "split": "holdout",
+    "sector": "manufacturing",
+    "text": "I'm Anna, product engineer at Stahlwerk Lifttechnik in Stuttgart. We build electric forklift trucks sold to warehouses across Europe. We're adding a camera and an AI model on the truck that spots people walking into the forklift's path and brakes the truck automatically. The images are processed on the truck itself, nothing is recorded or stored, and nobody is identified. It will be listed as one of the safety features in our product documentation.",
+    "intake": {
+      "title": "Forklift pedestrian detection and auto-braking",
+      "purpose": "Detect people in a forklift's path with an on-board camera and brake the truck automatically.",
+      "team": "Product Engineering",
+      "use_area": "other",
+      "data_categories": [],
+      "affected": ["customers"],
+      "decision_mode": "fully_automatic",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": ["EU"],
+      "org_regions": ["EU"],
+      "expected_users": 0,
+      "hours_saved_per_week": 0,
+      "flags": ["safety_component", "medical_or_safety_reason"]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "product_safety",
+      "regimes": [],
+      "risk_level": "high",
+      "basis": "Article 6(1) makes it high-risk as a safety component of machinery covered by Annex I law that needs third-party conformity assessment."
+    }
+  },
+  {
+    "id": "hold-11",
+    "split": "holdout",
+    "sector": "software",
+    "text": "This is Rachel, support manager at Bluepeak Software in Denver. We'd like to put a chat assistant on our help centre, built on OpenAI GPT-4o, that answers customers' questions about billing and features and can look up their account details once they log in. If it can't help, it hands over to a person, and our team reads a sample of chats every week. Our customers are small businesses and freelancers in the US, the UK and across the EU. It runs on US servers, and we expect around 5,000 chats a month.",
+    "intake": {
+      "title": "Help centre chat assistant",
+      "purpose": "Answer customers' billing and product questions in chat, look up their account details, and hand over to a person when needed.",
+      "team": "Customer Support",
+      "use_area": "customer_service",
+      "data_categories": ["personal", "financial"],
+      "affected": ["customers"],
+      "decision_mode": "acts_with_review",
+      "vendor": "OpenAI",
+      "model": "GPT-4o",
+      "processing_region": "US",
+      "people_regions": ["US", "UK", "EU"],
+      "org_regions": ["US"],
+      "expected_users": 0,
+      "hours_saved_per_week": 0,
+      "flags": ["interacts_with_people"]
+    },
+    "labels": {
+      "tier": "limited",
+      "annex_area": null,
+      "regimes": ["eu_gdpr", "uk_gdpr", "us_state"],
+      "risk_level": "medium",
+      "basis": "Article 50(1) requires customers to be told they are interacting with an AI system."
+    }
+  },
+  {
+    "id": "hold-12",
+    "split": "holdout",
+    "sector": "local media",
+    "text": "I'm Julia, editor at Donautal Nachrichten, a small local news website in Linz, Austria. We'd like AI to listen to the live stream of town council meetings and write a short news article on each one, which would go on our site automatically the same evening. Nobody on our team has time to edit them before they're published. The articles would name councillors and residents who speak at the meetings. We think it would save about 15 hours a week.",
+    "intake": {
+      "title": "Automatic council meeting news articles",
+      "purpose": "Write and publish a news article on each town council meeting from the live stream, without editing before publication.",
+      "team": "Editorial",
+      "use_area": "content_generation",
+      "data_categories": ["personal"],
+      "affected": ["public"],
+      "decision_mode": "fully_automatic",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": ["EU"],
+      "org_regions": ["EU"],
+      "expected_users": 0,
+      "hours_saved_per_week": 15,
+      "flags": ["generates_synthetic_media"]
+    },
+    "labels": {
+      "tier": "limited",
+      "annex_area": null,
+      "regimes": ["eu_gdpr"],
+      "risk_level": "medium",
+      "basis": "Article 50(4) requires disclosure of AI-generated text published to inform the public on matters of public interest, and the editorial-review exemption does not apply because nobody edits the articles."
+    }
+  },
+  {
+    "id": "hold-13",
+    "split": "holdout",
+    "sector": "professional services",
+    "text": "Hi, it's Ben in marketing at Kestrel Analytics in Manchester. Our chief executive, Helen, records a short video update every quarter. We want to use HeyGen to turn her English video into French, German and Spanish versions, so it looks and sounds as if she is speaking each language, in her own voice with matching lip movements. Helen has agreed to it. The tool runs in the US, and the videos go on our public website and our LinkedIn page.",
+    "intake": {
+      "title": "Translated CEO videos with voice and lip-sync",
+      "purpose": "Turn the chief executive's quarterly English video into French, German and Spanish versions in her own voice with matching lip movements.",
+      "team": "Marketing",
+      "use_area": "content_generation",
+      "data_categories": ["personal", "biometric"],
+      "affected": ["staff", "public"],
+      "decision_mode": "suggests",
+      "vendor": "HeyGen",
+      "model": "",
+      "processing_region": "US",
+      "people_regions": ["UK"],
+      "org_regions": ["UK"],
+      "expected_users": 0,
+      "hours_saved_per_week": 0,
+      "flags": ["generates_synthetic_media", "deepfake"]
+    },
+    "labels": {
+      "tier": "limited",
+      "annex_area": null,
+      "regimes": ["uk_gdpr"],
+      "risk_level": "medium",
+      "basis": "Article 50(4) requires disclosure of deepfakes, and video showing a real person speaking words in languages she never spoke is one."
+    }
+  },
+  {
+    "id": "hold-14",
+    "split": "holdout",
+    "sector": "retail",
+    "text": "I'm Sarah, creative lead at Casa Olivar Muebles in Seville. Instead of booking photographers for every new sofa, we want to use Midjourney to create lifestyle images of our furniture in made-up living rooms for our online shop and printed catalogue. No real people appear in the pictures, just rooms and products. Our designers would choose the best images before anything goes out. This should save us about 10 hours of photo shoots a week.",
+    "intake": {
+      "title": "AI lifestyle images for furniture catalogue",
+      "purpose": "Create lifestyle images of our furniture in imagined rooms for the online shop and printed catalogue.",
+      "team": "Creative",
+      "use_area": "content_generation",
+      "data_categories": [],
+      "affected": ["customers", "public"],
+      "decision_mode": "suggests",
+      "vendor": "Midjourney",
+      "model": "Midjourney",
+      "processing_region": "US",
+      "people_regions": [],
+      "org_regions": ["EU"],
+      "expected_users": 0,
+      "hours_saved_per_week": 10,
+      "flags": ["generates_synthetic_media"]
+    },
+    "labels": {
+      "tier": "limited",
+      "annex_area": null,
+      "regimes": [],
+      "risk_level": "medium",
+      "basis": "Article 50(2) requires AI-generated images to be marked as artificially generated."
+    }
+  },
+  {
+    "id": "hold-15",
+    "split": "holdout",
+    "sector": "payments",
+    "text": "Hi, I'm Kevin, head of risk at Lumen Pay in Dublin. We process card payments for online shoppers in Ireland, Germany and the US. We want a model that scores every transaction for fraud in real time and holds anything suspicious for up to an hour while one of our analysts checks it. It would learn from past fraud cases, device data and spending patterns. It runs on AWS in the US and would handle about 2 million transactions a month.",
+    "intake": {
+      "title": "Real-time card fraud scoring",
+      "purpose": "Score every card transaction for fraud and hold suspicious ones for an analyst to check.",
+      "team": "Risk",
+      "use_area": "fraud_detection",
+      "data_categories": ["personal", "financial"],
+      "affected": ["customers"],
+      "decision_mode": "acts_with_review",
+      "vendor": "AWS",
+      "model": "",
+      "processing_region": "US",
+      "people_regions": ["EU", "US"],
+      "org_regions": ["EU"],
+      "expected_users": 0,
+      "hours_saved_per_week": 0,
+      "flags": ["about_individuals", "profiling"]
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": ["eu_gdpr", "us_state"],
+      "risk_level": "medium",
+      "basis": "Annex III point 5(b) expressly excludes AI used to detect financial fraud, and no other Annex III point or Article 50 duty applies."
+    }
+  },
+  {
+    "id": "hold-16",
+    "split": "holdout",
+    "sector": "wholesale",
+    "text": "This is Michael from the finance team at Rheinland Baustoffe, a building-materials wholesaler near Cologne. Our trade customers are construction firms, all registered limited companies. We'd like an AI tool to read their published annual accounts and their payment history with us and suggest a credit limit for each company. Our credit controller makes the final call on every account. It would save about 8 hours a week.",
+    "intake": {
+      "title": "Trade credit limit suggestions for business customers",
+      "purpose": "Suggest a credit limit for each business customer from its published accounts and payment history.",
+      "team": "Finance",
+      "use_area": "credit_scoring",
+      "data_categories": ["confidential"],
+      "affected": ["customers"],
+      "decision_mode": "suggests",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [],
+      "org_regions": ["EU"],
+      "expected_users": 0,
+      "hours_saved_per_week": 8,
+      "flags": []
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": [],
+      "risk_level": "low",
+      "basis": "Annex III point 5(b) covers creditworthiness of natural persons only, and these customers are all limited companies."
+    }
+  },
+  {
+    "id": "hold-17",
+    "split": "holdout",
+    "sector": "insurance",
+    "text": "I'm Grace, senior underwriter at Thistle Home Insurance in Edinburgh. For unusual home insurance quotes, like thatched cottages or flats above shops, our underwriters currently research each case by hand. We'd like an AI model to look at the property details, the customer's claims history and flood maps and suggest a premium. The underwriter always checks it and sets the final price. That's about 300 quotes a month across Scotland and England.",
+    "intake": {
+      "title": "Premium suggestions for unusual home insurance quotes",
+      "purpose": "Suggest a premium for unusual home insurance quotes from property details, claims history and flood maps for an underwriter to check.",
+      "team": "Underwriting",
+      "use_area": "insurance_pricing",
+      "data_categories": ["personal", "financial"],
+      "affected": ["customers"],
+      "decision_mode": "suggests",
+      "vendor": "",
+      "model": "",
+      "processing_region": "UK",
+      "people_regions": ["UK"],
+      "org_regions": ["UK"],
+      "expected_users": 0,
+      "hours_saved_per_week": 0,
+      "flags": ["about_individuals"]
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": ["uk_gdpr"],
+      "risk_level": "medium",
+      "basis": "Annex III point 5(c) covers only life and health insurance, so home insurance pricing is outside Annex III and no Article 50 duty applies."
+    }
+  },
+  {
+    "id": "hold-18",
+    "split": "holdout",
+    "sector": "fitness",
+    "text": "Hi, Liam here, owner of Summit Fitness in Wellington, New Zealand. Members swipe a card to get in, and cards get shared. We'd like a door camera that, after a member types their membership number, checks the face at the door against the photo on that member's own account and opens the door if it matches. It's one face against one stored photo, nothing more. The vendor keeps the photos on servers in Sydney. We have around 1,800 members, some aged 16 and 17.",
+    "intake": {
+      "title": "Face check at gym door",
+      "purpose": "Confirm that the person at the door matches the photo on the membership account they entered, and open the door if it does.",
+      "team": "Management",
+      "use_area": "biometric_verification",
+      "data_categories": ["personal", "biometric", "children"],
+      "affected": ["customers"],
+      "decision_mode": "fully_automatic",
+      "vendor": "",
+      "model": "",
+      "processing_region": "AU",
+      "people_regions": ["NZ"],
+      "org_regions": ["NZ"],
+      "expected_users": 1800,
+      "hours_saved_per_week": 0,
+      "flags": ["about_individuals"]
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": ["nz_ipp"],
+      "risk_level": "high",
+      "basis": "Annex III point 1(a) excludes biometric verification whose sole purpose is to confirm a person is who they claim to be, and no Article 50 duty applies."
+    }
+  },
+  {
+    "id": "hold-19",
+    "split": "holdout",
+    "sector": "grocery retail",
+    "text": "I'm Jessica, supply planner at Prairie Fresh Markets, a chain of 45 grocery stores in Iowa and Nebraska. We want to use Google Gemini inside our planning spreadsheets to forecast how much fresh produce each store needs each day, using past sales totals, weather and local events. It only works with store-level totals, never individual shoppers. Planners would review the order suggestions before sending them. It could save around 20 hours a week across the team.",
+    "intake": {
+      "title": "Fresh produce demand forecasting",
+      "purpose": "Forecast daily fresh produce needs per store from sales totals, weather and local events, for planners to review.",
+      "team": "Supply Planning",
+      "use_area": "analytics_forecasting",
+      "data_categories": ["confidential"],
+      "affected": [],
+      "decision_mode": "suggests",
+      "vendor": "Google",
+      "model": "Gemini",
+      "processing_region": "US",
+      "people_regions": [],
+      "org_regions": ["US"],
+      "expected_users": 0,
+      "hours_saved_per_week": 20,
+      "flags": []
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": [],
+      "risk_level": "low",
+      "basis": "Store-level demand forecasting is not an Article 5 practice, not in Annex III and triggers no Article 50 duty."
+    }
+  },
+  {
+    "id": "hold-20",
+    "split": "holdout",
+    "sector": "legal services",
+    "text": "This is Nathan, practice manager at Harcourt & Lane Lawyers in Brisbane. In big commercial disputes our lawyers review thousands of emails and documents handed over by the other side. We'd like to use Microsoft Copilot, kept in our Australian Microsoft tenancy, to summarise those documents and sort them by topic so our lawyers find the relevant ones faster. The lawyers decide what matters and what goes before the court. The documents include names and emails of people at both companies. About 25 lawyers would use it, saving maybe 40 hours a week.",
+    "intake": {
+      "title": "Summarising and sorting disclosed documents",
+      "purpose": "Summarise and sort documents disclosed in commercial disputes by topic so lawyers can find relevant ones faster.",
+      "team": "Litigation",
+      "use_area": "document_processing",
+      "data_categories": ["personal", "confidential"],
+      "affected": ["customers", "public"],
+      "decision_mode": "suggests",
+      "vendor": "Microsoft",
+      "model": "Copilot",
+      "processing_region": "AU",
+      "people_regions": ["AU"],
+      "org_regions": ["AU"],
+      "expected_users": 25,
+      "hours_saved_per_week": 40,
+      "flags": []
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": ["au_app"],
+      "risk_level": "medium",
+      "basis": "Annex III point 8(a) covers AI used by or on behalf of judicial authorities or in alternative dispute resolution, not a law firm sorting documents for its own lawyers, and no Article 50 duty applies."
+    }
+  }
+]
