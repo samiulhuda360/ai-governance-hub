@@ -1,7 +1,7 @@
 # Labelling guide for the evaluation set
 
-Each case is an AI use case written in plain words, the way a member of staff would describe it. A person labels
-it by reading the published legal texts, not the hub's rules. Each case has three parts:
+Each case is an AI use case written in plain words, the way a member of staff would describe it. Each case is
+labelled by reading the published legal texts, never the hub's rules. Each case has three parts:
 
 1. `text`: the description, 40–120 words, in everyday language. Name an invented organisation (Acme-style
    names, such as "Northwind Clinic" or "Acme Freight"), a sector and a country. Western first names only.

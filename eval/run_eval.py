@@ -147,7 +147,7 @@ def write_md(res: dict[str, Any]) -> None:
     lines = [
         "# Evaluation results",
         "",
-        f"{r['all']['cases']} AI use cases written in plain words and labelled by hand from the published texts "
+        f"{r['all']['cases']} AI use cases written in plain words, each labelled individually against the published texts "
         f"({r['dev']['cases']} development cases used while writing the rules, {r['holdout']['cases']} held-out cases written separately "
         "and run once after the rules were committed). Labelling conventions: [labelling-guide.md](labelling-guide.md). "
         "Reproduce with `python eval/run_eval.py --check` (offline, replays the recorded model replies).",

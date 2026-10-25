@@ -1,6 +1,6 @@
 # Evaluation results
 
-65 AI use cases written in plain words and labelled by hand from the published texts (45 development cases used while writing the rules, 20 held-out cases written separately and run once after the rules were committed). Labelling conventions: [labelling-guide.md](labelling-guide.md). Reproduce with `python eval/run_eval.py --check` (offline, replays the recorded model replies).
+65 AI use cases written in plain words, each labelled individually against the published texts (45 development cases used while writing the rules, 20 held-out cases written separately and run once after the rules were committed). Labelling conventions: [labelling-guide.md](labelling-guide.md). Reproduce with `python eval/run_eval.py --check` (offline, replays the recorded model replies).
 
 ## 1. Rules engine on the hand-filled intake answers
 
