@@ -1,0 +1,197 @@
+# How the hub turns the findings into one overall risk level, and which controls each level requires.
+#
+# Each driver adds points and may set a floor ("at_least"). The level is the higher of the floors and the
+# points band. Prohibited and EU high-risk tiers set the level directly. This is the hub's own policy, built on
+# the frameworks it cites; an organisation can change the points and bands here.
+
+bands:
+  high: 9      # 9 points or more
+  medium: 2    # 2 to 8 points; below 2 is low
+
+drivers:
+  - id: staff_personal
+    when:
+      personal: true
+      not: {affected_any: [customers, public]}
+    points: 1
+    reason: It uses personal information about staff.
+    source: GDPR Art. 4(1) (personal data); APP 3; IPP 1
+  - id: external_personal
+    when:
+      personal: true
+      affected_any: [customers, public]
+    points: 2
+    at_least: medium
+    reason: It uses personal information about customers or the public.
+    source: GDPR Art. 4(1); APP 3; IPP 1
+  - id: special_category
+    when: {data_any: [health, biometric]}
+    points: 2
+    reason: It uses health or biometric information, which privacy laws treat as sensitive.
+    source: GDPR Art. 9; APP 3.3; Biometric Processing Privacy Code 2025
+  - id: special_external
+    when:
+      data_any: [health, biometric, children]
+      affected_any: [customers, public]
+      any:
+        - {flag: about_individuals}
+        - {flag: profiling}
+        - {use_area: [biometric_identification, biometric_verification, biometric_categorisation, emotion_recognition, medical, customer_service]}
+    points: 0
+    at_least: high
+    reason: It uses sensitive or children's information about customers or the public to act on or decide about them.
+    source: GDPR Art. 35(3)(b); NIST AI RMF MAP 5.1
+  - id: sensitive_staff
+    when:
+      data_any: [health, biometric, financial]
+      not: {affected_any: [customers, public]}
+    points: 0
+    at_least: medium
+    reason: Sensitive information about staff.
+    source: GDPR Art. 9 and Art. 88; APP 3.3
+  - id: children
+    when: {data_any: [children]}
+    points: 2
+    reason: It uses information about children.
+    source: GDPR Art. 8 and Recital 38; IPP 4; COPPA
+  - id: financial
+    when: {data_any: [financial]}
+    points: 1
+    reason: It uses people's financial information.
+    source: VCDPA 59.1-578; APP 11
+  - id: confidential
+    when: {data_any: [confidential]}
+    points: 1
+    reason: Confidential business information goes to the AI vendor.
+    source: NIST AI RMF GOVERN 6.1 and MEASURE 2.7; ISO/IEC 42001 Annex A.10
+  - id: acts_with_review
+    when: {decision_mode: [acts_with_review]}
+    points: 1
+    reason: The AI acts before a person checks the result.
+    source: NIST AI RMF MANAGE 2.4
+  - id: acts_on_people
+    when:
+      decision_mode: [acts_with_review]
+      flag: about_individuals
+    points: 0
+    at_least: medium
+    reason: The AI acts on matters affecting individual people, with review only afterwards.
+    source: NIST AI RMF MAP 3.4 and MANAGE 2.4
+  - id: fully_automatic
+    when: {decision_mode: [fully_automatic]}
+    points: 2
+    reason: Nobody looks at each outcome before it takes effect.
+    source: NIST AI RMF MANAGE 2.4
+  # GDPR Art. 22 covers decisions with legal or similarly significant effects. Recommendations, marketing,
+  # drafting and document sorting are not treated as such decisions here; the reviewer can still raise the level.
+  - id: automated_decision
+    when:
+      decision_mode: [fully_automatic]
+      flag: about_individuals
+      not: {use_area: [marketing_personalisation, content_generation, general_productivity, analytics_forecasting, document_processing, customer_service]}
+    points: 2
+    at_least: high
+    reason: Fully automatic decisions about individual people.
+    source: GDPR Art. 22; VCDPA 59.1-577; APP 1.7
+  - id: profiling
+    when: {flag: profiling}
+    points: 1
+    reason: It builds a picture of individual people.
+    source: GDPR Art. 4(4) and Art. 35(3)(a); NIST AI RMF MEASURE 2.11
+  - id: public
+    when: {affected_any: [public]}
+    points: 1
+    reason: Members of the public are affected, not only staff or customers.
+    source: NIST AI RMF MAP 5.1
+  - id: transparency
+    when: {tier: [limited]}
+    points: 1
+    at_least: medium
+    reason: An EU AI Act transparency duty applies.
+    source: EU AI Act Art. 50
+  - id: transfer
+    when: {transfer: true}
+    points: 1
+    at_least: medium
+    reason: Personal information is processed in a different region from the people it is about.
+    source: GDPR Arts. 44-46; APP 8; IPP 12
+
+# Controls generated for a use case. "required_at" is the lowest level that requires it; below that it is
+# recommended. "when" narrows it further.
+controls:
+  - id: human_review
+    name: Human review before outcomes affect anyone
+    required_at: medium
+    when:
+      any:
+        - {flag: about_individuals}
+        - {decision_mode: [acts_with_review, fully_automatic]}
+        - {tier: [high]}
+    source: EU AI Act Art. 26(2); GDPR Art. 22(3); NIST AI RMF MAP 3.4
+  - id: data_minimisation
+    name: Data minimisation (only the fields the task needs; mask the rest)
+    required_at: low
+    when: {personal: true}
+    source: GDPR Art. 5(1)(c); APP 3; IPP 1
+  - id: impact_assessment
+    name: DPIA or PIA completed and signed off
+    required_at: high
+    when: {personal: true}
+    source: GDPR Art. 35; OAIC PIA guide; NZ OPC PIA toolkit; ISO/IEC 42001 clause 6.1.4
+  - id: bias_testing
+    name: Bias testing across groups of people, with results recorded
+    required_at: medium
+    when:
+      any:
+        - {flag: about_individuals}
+        - {flag: profiling}
+    source: NIST AI RMF MEASURE 2.11
+  - id: logging
+    name: Logging of inputs, outputs and overrides (kept at least 6 months)
+    required_at: medium
+    when: {always: true}
+    source: EU AI Act Art. 26(6); NIST AI RMF MANAGE 4.1
+  - id: kill_switch
+    name: Kill switch with a named owner and a manual fallback
+    required_at: medium
+    when:
+      any:
+        - {decision_mode: [acts_with_review, fully_automatic]}
+        - {tier: [high]}
+    source: NIST AI RMF MANAGE 2.4
+  - id: vendor_terms
+    name: Vendor terms checked (no training on our data, retention, region, security)
+    required_at: low
+    when:
+      vendor: true
+      any:
+        - {personal: true}
+        - {data_any: [confidential]}
+    source: GDPR Art. 28; NIST AI RMF GOVERN 6.1; ISO/IEC 42001 Annex A.10
+  - id: transparency_notice
+    name: Notice telling people AI is involved
+    required_at: low
+    when:
+      any:
+        - {tier: [limited, high]}
+        - {decision_mode: [fully_automatic], flag: about_individuals}
+    source: EU AI Act Art. 26(11) and Art. 50; GDPR Arts. 13-14
+  - id: training
+    name: Users and reviewers complete the tool's training
+    required_at: medium
+    when: {always: true}
+    source: EU AI Act Art. 4; NIST AI RMF GOVERN 2.2; ISO/IEC 42001 clause 7.2
+  - id: fria
+    name: Fundamental-rights impact assessment
+    required_at: high
+    when:
+      tier: [high]
+      any:
+        - {flag: public_service_deployer}
+        - {use_area: [credit_scoring, insurance_pricing]}
+    source: EU AI Act Art. 27
+
+review_months:
+  high: 6
+  medium: 12
+  low: 24

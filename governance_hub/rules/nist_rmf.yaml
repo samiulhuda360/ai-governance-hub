@@ -1,0 +1,88 @@
+# NIST AI Risk Management Framework 1.0 (NIST AI 100-1, January 2023) as concrete checks.
+# Each check names the subcategory it comes from. ISO/IEC 42001:2023 references point to the matching clause or
+# Annex A control objective, for organisations that run a certified AI management system.
+
+checks:
+  - id: govern_1_6
+    function: Govern
+    when: {always: true}
+    check: Add the system to the AI register with an owner, purpose and review date.
+    source: NIST AI RMF GOVERN 1.6 (inventory of AI systems); ISO/IEC 42001 Annex A.4
+  - id: govern_2_2
+    function: Govern
+    when: {always: true}
+    check: Make sure everyone who uses or oversees it has completed the tool's training.
+    source: NIST AI RMF GOVERN 2.2 (AI risk management training); ISO/IEC 42001 clause 7.2 (competence)
+  - id: govern_6_1
+    function: Govern
+    when: {vendor: true}
+    check: Review the vendor's terms on data use, retention, model training on our data, security and liability.
+    source: NIST AI RMF GOVERN 6.1 (third-party risk policies); ISO/IEC 42001 Annex A.10
+  - id: map_1_1
+    function: Map
+    when: {always: true}
+    check: Write down the intended purpose, the setting it will be used in, and uses that are out of scope.
+    source: NIST AI RMF MAP 1.1 (intended purposes and context); ISO/IEC 42001 Annex A.6
+  - id: map_3_4
+    function: Map
+    when: {decision_mode: [suggests, acts_with_review]}
+    check: Define what the people checking the AI's output need to know to spot its mistakes.
+    source: NIST AI RMF MAP 3.4 (operator and practitioner proficiency)
+  - id: map_5_1
+    function: Map
+    when:
+      any:
+        - {flag: about_individuals}
+        - {affected_any: [customers, public]}
+    check: Estimate how likely and how serious the harms to affected people could be, including people outside the company.
+    source: NIST AI RMF MAP 5.1 (likelihood and magnitude of impacts); ISO/IEC 42001 clause 6.1.4 (AI system impact assessment)
+  - id: measure_2_5
+    function: Measure
+    when:
+      any:
+        - {decision_mode: [acts_with_review, fully_automatic]}
+        - {tier: [high]}
+    check: Test accuracy on our own data before go-live and record the error rate the owner will accept.
+    source: NIST AI RMF MEASURE 2.5 (valid and reliable)
+  - id: measure_2_7
+    function: Measure
+    when:
+      any:
+        - {data_any: [confidential]}
+        - {personal: true}
+    check: Check access controls, prompt-injection exposure and where prompts and outputs are stored.
+    source: NIST AI RMF MEASURE 2.7 (security and resilience)
+  - id: measure_2_10
+    function: Measure
+    when: {personal: true}
+    check: Record which personal information goes into the AI, and whether it can come back out in answers.
+    source: NIST AI RMF MEASURE 2.10 (privacy risk); ISO/IEC 42001 Annex A.7
+  - id: measure_2_11
+    function: Measure
+    when:
+      any:
+        - {flag: about_individuals}
+        - {flag: profiling}
+    check: Compare outcomes across groups of people (for example by age band, sex or region) before go-live and each review.
+    source: NIST AI RMF MEASURE 2.11 (fairness and bias)
+  - id: manage_2_4
+    function: Manage
+    when:
+      any:
+        - {decision_mode: [acts_with_review, fully_automatic]}
+        - {tier: [high]}
+    check: Name who can switch it off, how, and what the fallback process is.
+    source: NIST AI RMF MANAGE 2.4 (supersede, disengage or deactivate)
+  - id: manage_4_1
+    function: Manage
+    when: {always: true}
+    check: Track usage, overrides and complaints after go-live, and review them at each review date.
+    source: NIST AI RMF MANAGE 4.1 (post-deployment monitoring); ISO/IEC 42001 clause 9.1
+  - id: manage_4_3
+    function: Manage
+    when:
+      any:
+        - {affected_any: [customers, public]}
+        - {tier: [high]}
+    check: Log incidents and errors in the hub and tell affected people when something goes wrong.
+    source: NIST AI RMF MANAGE 4.3 (incidents and errors communicated); ISO/IEC 42001 clause 10.2

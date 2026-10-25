@@ -1,0 +1,321 @@
+# EU AI Act (Regulation (EU) 2024/1689) rules for an organisation that uses (deploys) AI.
+#
+# Conditions use the small language in governance_hub/conditions.py. Wording paraphrases the published text;
+# docs/sources.md lists every article and annex point used here.
+
+prohibited:
+  - id: art5_1a
+    when: {flag: manipulative}
+    title: Harmful manipulation
+    source: EU AI Act Art. 5(1)(a)
+    explain: >-
+      The Act bans AI that uses subliminal, purposefully manipulative or deceptive techniques to materially distort
+      people's behaviour in a way that causes, or is reasonably likely to cause, significant harm.
+  - id: art5_1b
+    when: {flag: exploits_vulnerability}
+    title: Exploiting vulnerable people
+    source: EU AI Act Art. 5(1)(b)
+    explain: >-
+      The Act bans AI that exploits vulnerabilities due to age, disability or a specific social or economic
+      situation to materially distort behaviour in a way that causes, or is reasonably likely to cause, significant harm.
+  - id: art5_1c
+    when: {flag: social_scoring}
+    title: Social scoring
+    source: EU AI Act Art. 5(1)(c)
+    explain: >-
+      The Act bans scoring people over time on their social behaviour or personal characteristics where the score
+      leads to unfavourable treatment in unrelated contexts, or treatment out of proportion to the behaviour.
+  - id: art5_1d
+    when: {flag: crime_prediction_profiling}
+    title: Predicting crime from a profile
+    source: EU AI Act Art. 5(1)(d)
+    explain: >-
+      The Act bans assessing the risk that a person will commit a crime based solely on profiling or on their
+      personality traits. It does not ban tools that support a human assessment already based on objective,
+      verifiable facts linked to a criminal activity.
+  - id: art5_1e
+    when: {flag: face_scraping}
+    title: Untargeted scraping of faces
+    source: EU AI Act Art. 5(1)(e)
+    explain: >-
+      The Act bans creating or expanding facial-recognition databases through untargeted scraping of facial
+      images from the internet or CCTV footage.
+  - id: art5_1f
+    when:
+      use_area: [emotion_recognition]
+      flag: workplace_or_education
+      not: {flag: medical_or_safety_reason}
+    title: Emotion recognition at work or in education
+    source: EU AI Act Art. 5(1)(f)
+    explain: >-
+      The Act bans AI that infers the emotions of people in the workplace or in education institutions, except
+      where it is intended for medical or safety reasons.
+  - id: art5_1g
+    when:
+      any:
+        - {use_area: [biometric_categorisation, biometric_identification, emotion_recognition]}
+        - {data_any: [biometric]}
+      flag: infers_sensitive_traits
+    title: Inferring sensitive traits from biometric data
+    source: EU AI Act Art. 5(1)(g)
+    explain: >-
+      The Act bans biometric categorisation that sorts people to deduce or infer their race, political opinions,
+      trade-union membership, religious or philosophical beliefs, sex life or sexual orientation.
+  - id: art5_1h
+    when: {flag: real_time_public_biometric}
+    title: Live biometric identification in public for law enforcement
+    source: EU AI Act Art. 5(1)(h)
+    explain: >-
+      The Act bans real-time remote biometric identification in publicly accessible spaces for law enforcement,
+      except in the narrow, authorised cases listed in Art. 5(1)(h)(i)-(iii) and subject to Art. 5(2)-(7).
+
+# Annex III high-risk areas. "always" means Article 6(3)'s exception cannot remove it from high-risk
+# (the system profiles people); the engine checks that separately.
+high_risk:
+  - id: annex3_1a
+    area: biometrics
+    point: Annex III 1(a)
+    when: {use_area: [biometric_identification]}
+    title: Remote biometric identification
+    explain: >-
+      Remote biometric identification systems are high-risk. Annex III 1(a) excludes systems whose only purpose is
+      biometric verification, that is confirming a person is who they claim to be.
+  - id: annex3_1b
+    area: biometrics
+    point: Annex III 1(b)
+    when: {use_area: [biometric_categorisation]}
+    title: Biometric categorisation
+    explain: >-
+      AI that categorises people by sensitive or protected attributes inferred from biometric data is high-risk.
+  - id: annex3_1c
+    area: biometrics
+    point: Annex III 1(c)
+    when: {use_area: [emotion_recognition]}
+    title: Emotion recognition
+    explain: >-
+      Emotion-recognition systems are high-risk. Recital 18 notes that detecting physical states such as pain or
+      fatigue is not emotion recognition.
+  - id: annex3_2
+    area: critical_infrastructure
+    point: Annex III 2
+    when: {use_area: [critical_infrastructure]}
+    title: Safety component in critical infrastructure
+    explain: >-
+      AI used as a safety component in managing and operating critical digital infrastructure, road traffic, or
+      the supply of water, gas, heating or electricity is high-risk.
+  - id: annex3_3
+    area: education
+    point: Annex III 3(a)-(d)
+    when: {use_area: [education_assessment]}
+    title: Education and vocational training
+    explain: >-
+      AI that decides access or admission, evaluates learning outcomes, assesses the level of education a person
+      will receive, or monitors students for prohibited behaviour during tests is high-risk.
+  - id: annex3_4a
+    area: employment
+    point: Annex III 4(a)
+    when: {use_area: [recruitment]}
+    title: Recruitment and selection
+    explain: >-
+      AI used to recruit or select people, in particular to place targeted job adverts, analyse and filter
+      applications, or evaluate candidates, is high-risk.
+  - id: annex3_4b
+    area: employment
+    point: Annex III 4(b)
+    when:
+      use_area: [workforce_management]
+      any:
+        - {flag: about_individuals}
+        - {flag: profiling}
+    title: Decisions about workers
+    explain: >-
+      AI used to make decisions affecting terms of work, promotion or termination, to allocate tasks based on
+      individual behaviour or personal traits, or to monitor and evaluate workers' performance and behaviour is
+      high-risk.
+  - id: annex3_5a
+    area: essential_services
+    point: Annex III 5(a)
+    when: {use_area: [public_benefits]}
+    title: Eligibility for public benefits and services
+    explain: >-
+      AI used by or for public authorities to evaluate people's eligibility for essential public assistance
+      benefits and services, or to grant, reduce, revoke or reclaim them, is high-risk.
+  - id: annex3_5b
+    area: essential_services
+    point: Annex III 5(b)
+    when:
+      use_area: [credit_scoring]
+      flag: about_individuals
+    title: Creditworthiness of people
+    explain: >-
+      AI used to evaluate the creditworthiness of natural persons or establish their credit score is high-risk.
+      Annex III 5(b) excludes AI used to detect financial fraud, and it does not cover credit checks on companies.
+  - id: annex3_5c
+    area: essential_services
+    point: Annex III 5(c)
+    when:
+      use_area: [insurance_pricing]
+      flag: about_individuals
+      any:
+        - {data_any: [health]}
+        - {text_any: ["life insurance", "health insurance", "life cover", "life policy", "medical insurance", "health cover"]}
+    title: Life and health insurance risk and pricing
+    explain: >-
+      AI used for risk assessment and pricing of natural persons for life and health insurance is high-risk.
+      Other insurance, such as car or home insurance, is not in Annex III 5(c).
+  - id: annex3_5d
+    area: essential_services
+    point: Annex III 5(d)
+    when: {use_area: [emergency_triage]}
+    title: Emergency calls and triage
+    explain: >-
+      AI used to evaluate and classify emergency calls, to dispatch or prioritise emergency first response
+      (police, firefighters, medical aid), or for emergency patient triage is high-risk.
+  - id: annex3_6
+    area: law_enforcement
+    point: Annex III 6(a)-(e)
+    when: {use_area: [law_enforcement]}
+    title: Law enforcement
+    explain: >-
+      AI used by or on behalf of law-enforcement authorities for the purposes listed in Annex III 6 (assessing the
+      risk of a person becoming a victim, polygraph-type tools, evaluating the reliability of evidence, assessing
+      offending risk, or profiling in investigations) is high-risk.
+  - id: annex3_7
+    area: migration
+    point: Annex III 7(a)-(d)
+    when: {use_area: [migration_border]}
+    title: Migration, asylum and border control
+    explain: >-
+      AI used by or on behalf of public authorities for migration, asylum and border-control tasks listed in
+      Annex III 7 (risk assessments, examining applications, detecting or identifying people) is high-risk.
+  - id: annex3_8
+    area: justice_democracy
+    point: Annex III 8(a)-(b)
+    when: {use_area: [justice_democracy]}
+    title: Justice and democratic processes
+    explain: >-
+      AI used to assist a judicial authority in researching and interpreting facts and law and applying the law,
+      or intended to influence the outcome of an election or referendum or people's voting behaviour, is high-risk.
+  - id: art6_1
+    area: product_safety
+    point: Art. 6(1), Annex I
+    when:
+      any:
+        - {flag: safety_component}
+        - {use_area: [medical]}
+    title: Safety component of a regulated product
+    explain: >-
+      AI that is a product, or the safety component of a product, covered by the EU laws in Annex I (such as
+      machinery, toys, lifts, radio equipment, medical devices and in-vitro diagnostics) and that needs a
+      third-party conformity assessment is high-risk. Medical software is covered when it is a medical device
+      under the Medical Device Regulation.
+
+# Article 6(3): an Annex III system is not high-risk when it does not pose a significant risk of harm, for
+# example because it only performs a narrow procedural task, improves a completed human activity, detects
+# decision patterns without replacing human assessment, or performs a preparatory task. Never when it profiles.
+# It applies to Annex III systems only, not to Article 6(1) product-safety systems.
+exception_6_3:
+  when:
+    flag: narrow_procedural_task
+    not: {flag: profiling}
+  source: EU AI Act Art. 6(3)
+  explain: >-
+    The answers say the AI only does a narrow, preparatory or checking task and does not build a picture of
+    individuals, so Article 6(3) can take it out of high-risk. The assessment must be documented (Art. 6(4)) and,
+    for the provider, the system registered (Art. 49(2)). A reviewer should confirm the task really is narrow.
+  profiling_note: >-
+    The answers say the AI builds a picture of individual people (profiling). Under the last paragraph of
+    Article 6(3), an Annex III system that profiles people is always high-risk.
+
+transparency:
+  - id: art50_1
+    when:
+      any:
+        - {flag: interacts_with_people}
+        - {use_area: [customer_service], decision_mode: [acts_with_review, fully_automatic]}
+    title: People must know they are talking to an AI
+    source: EU AI Act Art. 50(1)
+    explain: >-
+      AI that interacts directly with people must be designed so they are told they are dealing with an AI,
+      unless that is obvious from the context.
+  - id: art50_2
+    when:
+      any:
+        - {flag: generates_synthetic_media}
+        - {use_area: [content_generation]}
+    title: Generated content must be marked
+    source: EU AI Act Art. 50(2)
+    explain: >-
+      Providers of AI that generates synthetic audio, images, video or text must mark the output as artificially
+      generated in a machine-readable way. Check that the vendor does this and that we do not strip the marking.
+  - id: art50_3
+    when: {use_area: [emotion_recognition, biometric_categorisation]}
+    title: Tell people about emotion recognition or biometric categorisation
+    source: EU AI Act Art. 50(3)
+    explain: >-
+      Deployers of emotion-recognition or biometric-categorisation systems must inform the people exposed to them
+      and process their personal data in line with the GDPR.
+  - id: art50_4
+    when: {flag: deepfake}
+    title: Disclose deepfakes
+    source: EU AI Act Art. 50(4)
+    explain: >-
+      Deployers of AI that generates or manipulates images, audio or video that resemble real people, places or
+      events (deepfakes) must disclose that the content is artificially generated or manipulated. The same applies
+      to AI-generated text published to inform the public on matters of public interest, unless it has had human
+      editorial review.
+
+# Duties that come with the tier, for an organisation deploying the system.
+deployer_duties:
+  all:
+    - id: art4
+      title: AI literacy for the people who use it
+      source: EU AI Act Art. 4
+      explain: >-
+        Deployers must take measures to ensure, to their best extent, a sufficient level of AI literacy among
+        staff dealing with the operation and use of AI systems. The hub's training catalogue records this.
+  high:
+    - id: art26_1
+      title: Use it as the provider instructs, with competent human oversight
+      source: EU AI Act Art. 26(1)-(2)
+      explain: >-
+        Deployers of high-risk AI must use it in line with the provider's instructions and assign human oversight
+        to people who have the competence, training, authority and support they need.
+    - id: art26_5
+      title: Monitor it and report serious incidents
+      source: EU AI Act Art. 26(5)
+      explain: >-
+        Deployers must monitor the system's operation and, where they have reason to consider it presents a risk,
+        inform the provider and the market-surveillance authority and suspend use; serious incidents must be reported.
+    - id: art26_6
+      title: Keep the logs for at least six months
+      source: EU AI Act Art. 26(6)
+      explain: >-
+        Deployers must keep the logs the system generates automatically, to the extent they control them, for at
+        least six months unless other law says otherwise.
+    - id: art26_11
+      title: Tell people a high-risk AI is used in decisions about them
+      source: EU AI Act Art. 26(11)
+      explain: >-
+        Deployers of Annex III high-risk AI that makes or helps make decisions about people must inform those
+        people that they are subject to its use.
+    - id: art86
+      title: Explain individual decisions on request
+      source: EU AI Act Art. 86
+      explain: >-
+        A person affected by a decision based on an Annex III high-risk system's output, with legal or similarly
+        significant effects, has the right to a clear and meaningful explanation of the AI's role in the decision.
+  high_workplace:
+    - id: art26_7
+      title: Inform workers and their representatives first
+      source: EU AI Act Art. 26(7)
+      explain: >-
+        Before putting a high-risk AI system into use at the workplace, employers must inform workers'
+        representatives and the affected workers that they will be subject to it.
+  high_fria:
+    - id: art27
+      title: Fundamental-rights impact assessment
+      source: EU AI Act Art. 27
+      explain: >-
+        Public bodies, private bodies providing public services, and deployers of Annex III 5(b) and 5(c) systems
+        must assess the impact on fundamental rights before first use.

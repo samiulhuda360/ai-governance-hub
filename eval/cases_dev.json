@@ -1,0 +1,1906 @@
+[
+  {
+    "id": "dev-01",
+    "split": "dev",
+    "sector": "retail",
+    "text": "I'm Laura from the customer contact centre at Brightmart Retail in Hamburg, Germany. We'd like a tool that listens to our agents' voices on every call and works out whether they sound annoyed, bored or cheerful. Team leaders would get a weekly mood score for each agent and use it in their one-to-one reviews and bonus talks. It's not about safety, we just want happier-sounding staff. The vendor runs it on Azure in Frankfurt.",
+    "intake": {
+      "title": "Agent voice mood scoring",
+      "purpose": "Score call-centre agents' mood from their voice for reviews and bonuses",
+      "team": "Customer contact centre",
+      "use_area": "emotion_recognition",
+      "data_categories": [
+        "personal",
+        "biometric"
+      ],
+      "affected": [
+        "staff"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "Microsoft Azure",
+      "model": "Azure AI Speech",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 25,
+      "hours_saved_per_week": 10,
+      "flags": [
+        "about_individuals",
+        "profiling",
+        "workplace_or_education"
+      ]
+    },
+    "labels": {
+      "tier": "prohibited",
+      "annex_area": null,
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "prohibited",
+      "basis": "Article 5(1)(f) bans inferring the emotions of people in the workplace except for medical or safety reasons, and this is for reviews and bonuses."
+    }
+  },
+  {
+    "id": "dev-02",
+    "split": "dev",
+    "sector": "education",
+    "text": "Mark here, IT lead at Lindenhof Secondary School in Utrecht, Netherlands. During online lessons we want the webcam to read each pupil's face and tell the teacher who looks bored, confused or frustrated, so teachers can step in and so we can add an 'engagement' note to the term report. Pupils are 12 to 16. The software comes from a small edtech start-up and runs on their servers in Ireland.",
+    "intake": {
+      "title": "Pupil engagement detection in online lessons",
+      "purpose": "Read pupils' facial expressions to flag boredom or confusion and note engagement on reports",
+      "team": "School IT",
+      "use_area": "emotion_recognition",
+      "data_categories": [
+        "personal",
+        "children",
+        "biometric"
+      ],
+      "affected": [
+        "customers"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "Edtech start-up",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 40,
+      "hours_saved_per_week": 0.0,
+      "flags": [
+        "about_individuals",
+        "profiling",
+        "workplace_or_education",
+        "public_service_deployer"
+      ]
+    },
+    "labels": {
+      "tier": "prohibited",
+      "annex_area": null,
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "prohibited",
+      "basis": "Article 5(1)(f) bans emotion recognition in education institutions unless for medical or safety reasons."
+    }
+  },
+  {
+    "id": "dev-03",
+    "split": "dev",
+    "sector": "media",
+    "text": "Hi, it's Sophie from the ad sales team at Solano Media in Madrid, Spain. Advertisers keep asking for better targeting. We want an AI that looks at the profile photos people upload to our dating and lifestyle apps and guesses their sexual orientation and religion, so we can sell audience segments like 'likely gay men' or 'likely Muslim'. Users wouldn't be asked; it would run in the background on Google Cloud in Belgium.",
+    "intake": {
+      "title": "Audience segments from profile photos",
+      "purpose": "Guess users' sexual orientation and religion from photos to sell ad segments",
+      "team": "Ad sales",
+      "use_area": "biometric_categorisation",
+      "data_categories": [
+        "personal",
+        "biometric"
+      ],
+      "affected": [
+        "customers"
+      ],
+      "decision_mode": "fully_automatic",
+      "vendor": "Google Cloud",
+      "model": "Google Gemini",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 10,
+      "hours_saved_per_week": 0.0,
+      "flags": [
+        "about_individuals",
+        "profiling",
+        "infers_sensitive_traits"
+      ]
+    },
+    "labels": {
+      "tier": "prohibited",
+      "annex_area": null,
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "prohibited",
+      "basis": "Article 5(1)(g) bans biometric categorisation that infers sexual orientation or religious beliefs from biometric data."
+    }
+  },
+  {
+    "id": "dev-04",
+    "split": "dev",
+    "sector": "local government",
+    "text": "I'm Paul in the housing department at Comune di Valverde, a town council in Italy. We want a points system for every resident: late council-tax payments, noise complaints, rubbish fines and even angry posts about the council online would lower your score. People with low scores would be moved down the list for council housing and lose access to the free sports centre pass. The system would update the scores itself each night.",
+    "intake": {
+      "title": "Resident behaviour score",
+      "purpose": "Score residents on their behaviour and use the score to ration housing and services",
+      "team": "Housing department",
+      "use_area": "public_benefits",
+      "data_categories": [
+        "personal",
+        "financial"
+      ],
+      "affected": [
+        "public"
+      ],
+      "decision_mode": "fully_automatic",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 15,
+      "hours_saved_per_week": 0.0,
+      "flags": [
+        "about_individuals",
+        "profiling",
+        "social_scoring",
+        "public_service_deployer"
+      ]
+    },
+    "labels": {
+      "tier": "prohibited",
+      "annex_area": null,
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "prohibited",
+      "basis": "Article 5(1)(c) bans scoring people on social behaviour where the score leads to detrimental treatment in unrelated contexts."
+    }
+  },
+  {
+    "id": "dev-05",
+    "split": "dev",
+    "sector": "security services",
+    "text": "Hello, Daniel from Greywall Security in Dublin, Ireland. We'd like to build our own face search product. A script would collect every face photo it can find on public social media pages, news sites and the CCTV footage our clients share with us, and store them in one big searchable library. Retail clients could then upload a still of anyone and see who it is. We'd run the matching with AWS Rekognition in Ireland.",
+    "intake": {
+      "title": "Face search library",
+      "purpose": "Collect face images from the internet and CCTV to build a searchable face database for clients",
+      "team": "Product",
+      "use_area": "biometric_identification",
+      "data_categories": [
+        "personal",
+        "biometric"
+      ],
+      "affected": [
+        "public"
+      ],
+      "decision_mode": "fully_automatic",
+      "vendor": "AWS",
+      "model": "AWS Rekognition",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU",
+        "other"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 50,
+      "hours_saved_per_week": 0.0,
+      "flags": [
+        "about_individuals",
+        "face_scraping"
+      ]
+    },
+    "labels": {
+      "tier": "prohibited",
+      "annex_area": null,
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "prohibited",
+      "basis": "Article 5(1)(e) bans building facial recognition databases through untargeted scraping of facial images from the internet or CCTV."
+    }
+  },
+  {
+    "id": "dev-06",
+    "split": "dev",
+    "sector": "banking",
+    "text": "Kate from growth marketing at QuickPocket Loans in Warsaw, Poland. We want an AI that spots app users who seem to be in money trouble, for example missed rent or late-night balance checks, and then shows them countdown timers and 'only today' messages pushing our highest-interest short-term loans. It would test which pressure messages work best on each person. It runs automatically through OpenAI GPT-4o.",
+    "intake": {
+      "title": "Targeted loan nudges for struggling users",
+      "purpose": "Detect users in financial difficulty and push high-cost loans with pressure messages",
+      "team": "Growth marketing",
+      "use_area": "marketing_personalisation",
+      "data_categories": [
+        "personal",
+        "financial"
+      ],
+      "affected": [
+        "customers"
+      ],
+      "decision_mode": "fully_automatic",
+      "vendor": "OpenAI",
+      "model": "GPT-4o",
+      "processing_region": "US",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 5,
+      "hours_saved_per_week": 0.0,
+      "flags": [
+        "about_individuals",
+        "profiling",
+        "manipulative",
+        "exploits_vulnerability",
+        "generates_synthetic_media"
+      ]
+    },
+    "labels": {
+      "tier": "prohibited",
+      "annex_area": null,
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "prohibited",
+      "basis": "Article 5(1)(a) and (b) ban manipulative techniques and exploiting people's economic situation in ways likely to cause significant harm."
+    }
+  },
+  {
+    "id": "dev-07",
+    "split": "dev",
+    "sector": "retail",
+    "text": "This is Claire, loss prevention manager at Maison Verte stores in Lyon, France. We want cameras at our entrances to compare every shopper's face against a list of people we've previously caught stealing. When there's a match, a guard gets an alert on their phone and decides whether to approach. This is our own security, not for the police. The matching would use AWS Rekognition in Paris.",
+    "intake": {
+      "title": "Shoplifter watchlist face matching",
+      "purpose": "Match shoppers' faces at entrances against a watchlist of known shoplifters",
+      "team": "Loss prevention",
+      "use_area": "biometric_identification",
+      "data_categories": [
+        "personal",
+        "biometric"
+      ],
+      "affected": [
+        "public"
+      ],
+      "decision_mode": "acts_with_review",
+      "vendor": "AWS",
+      "model": "AWS Rekognition",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 60,
+      "hours_saved_per_week": 0.0,
+      "flags": [
+        "about_individuals"
+      ]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "biometrics",
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "high",
+      "basis": "Annex III point 1(a) covers remote biometric identification; it is not for law enforcement, so Article 5(1)(h) does not apply."
+    }
+  },
+  {
+    "id": "dev-08",
+    "split": "dev",
+    "sector": "manufacturing",
+    "text": "Hi, Robert from health and safety at Nordkem Chemicals in Antwerp, Belgium. Our control-room operators handle dangerous processes. We want cameras and microphones to pick up signs that an operator is panicking or highly stressed during an incident, and alert the shift supervisor so they can take over. It's purely to prevent accidents and isn't used for appraisals. The vendor's software runs on a server on site.",
+    "intake": {
+      "title": "Operator stress alerts in the control room",
+      "purpose": "Detect panic or high stress in control-room operators to alert supervisors and prevent accidents",
+      "team": "Health and safety",
+      "use_area": "emotion_recognition",
+      "data_categories": [
+        "personal",
+        "biometric"
+      ],
+      "affected": [
+        "staff"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "Safety software vendor",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 12,
+      "hours_saved_per_week": 0.0,
+      "flags": [
+        "about_individuals",
+        "workplace_or_education",
+        "medical_or_safety_reason"
+      ]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "biometrics",
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "high",
+      "basis": "Emotion recognition for safety reasons escapes Article 5(1)(f) but remains an emotion-recognition system under Annex III point 1(c)."
+    }
+  },
+  {
+    "id": "dev-09",
+    "split": "dev",
+    "sector": "utilities",
+    "text": "Ida from network operations at Fjordvand Water in Aarhus, Denmark. We want an AI that adjusts pump speeds, valve settings and chlorine dosing across our drinking-water network in real time, based on sensor readings and demand forecasts. Engineers can override it, but most changes would happen automatically and be checked in the morning report. No customer data is involved, only sensor data.",
+    "intake": {
+      "title": "Automatic water network control",
+      "purpose": "Control pumps, valves and chlorine dosing in the drinking-water network in real time",
+      "team": "Network operations",
+      "use_area": "critical_infrastructure",
+      "data_categories": [],
+      "affected": [
+        "public"
+      ],
+      "decision_mode": "acts_with_review",
+      "vendor": "Industrial AI vendor",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 8,
+      "hours_saved_per_week": 20,
+      "flags": []
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "critical_infrastructure",
+      "regimes": [],
+      "risk_level": "high",
+      "basis": "Annex III point 2 covers AI used as a safety component in the management and operation of water supply."
+    }
+  },
+  {
+    "id": "dev-10",
+    "split": "dev",
+    "sector": "education",
+    "text": "Hello, Emma from admissions at St Brendan's University in Galway, Ireland. We receive about 9,000 applications a year from Ireland, the rest of Europe and further afield. We'd like an AI to read each application, personal statement and grades, give it a score and rank everyone, so the admissions panel mostly works from the top of the list. We'd use Microsoft Copilot through our university tenancy.",
+    "intake": {
+      "title": "Applicant scoring and ranking",
+      "purpose": "Score and rank university applicants for the admissions panel",
+      "team": "Admissions",
+      "use_area": "education_assessment",
+      "data_categories": [
+        "personal"
+      ],
+      "affected": [
+        "public"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "Microsoft",
+      "model": "Microsoft Copilot",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU",
+        "other"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 15,
+      "hours_saved_per_week": 60,
+      "flags": [
+        "about_individuals",
+        "profiling",
+        "public_service_deployer"
+      ]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "education",
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "high",
+      "basis": "Annex III point 3(a) covers AI used to determine admission to educational institutions, and it ranks individual applicants."
+    }
+  },
+  {
+    "id": "dev-11",
+    "split": "dev",
+    "sector": "education",
+    "text": "James, digital learning team at Kingsmere University in Leeds, UK. For online exams we want software that watches students through their webcam and microphone and flags anyone who looks away, has another person in the room or seems to be reading notes. Invigilators review the flags afterwards and decide on misconduct cases. Many of our distance students live in the EU. Processing is in the vendor's UK data centre.",
+    "intake": {
+      "title": "Online exam monitoring",
+      "purpose": "Flag possible cheating in online exams from webcam and microphone recordings",
+      "team": "Digital learning",
+      "use_area": "education_assessment",
+      "data_categories": [
+        "personal",
+        "biometric"
+      ],
+      "affected": [
+        "customers"
+      ],
+      "decision_mode": "acts_with_review",
+      "vendor": "Proctoring vendor",
+      "model": "",
+      "processing_region": "UK",
+      "people_regions": [
+        "UK",
+        "EU"
+      ],
+      "org_regions": [
+        "UK"
+      ],
+      "expected_users": 30,
+      "hours_saved_per_week": 40,
+      "flags": [
+        "about_individuals",
+        "workplace_or_education"
+      ]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "education",
+      "regimes": [
+        "uk_gdpr",
+        "eu_gdpr"
+      ],
+      "risk_level": "high",
+      "basis": "Annex III point 3(d) covers AI used to monitor and detect prohibited behaviour of students during tests."
+    }
+  },
+  {
+    "id": "dev-12",
+    "split": "dev",
+    "sector": "HR services",
+    "text": "Hi, Oliver at Talentbridge Staffing in Gothenburg, Sweden. We recruit for client companies. We'd like an AI that only pre-sorts incoming CVs into folders by job type before our recruiters read them. While doing that it would also give each candidate a personality and reliability rating from their CV wording, which recruiters would see next to the name. Recruiters still make every shortlist decision. It runs on OpenAI GPT-4o.",
+    "intake": {
+      "title": "CV pre-sorting with personality rating",
+      "purpose": "Sort incoming CVs by job type and rate each candidate's personality and reliability",
+      "team": "Recruitment",
+      "use_area": "recruitment",
+      "data_categories": [
+        "personal"
+      ],
+      "affected": [
+        "public"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "OpenAI",
+      "model": "GPT-4o",
+      "processing_region": "US",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 20,
+      "hours_saved_per_week": 30,
+      "flags": [
+        "about_individuals",
+        "profiling",
+        "narrow_procedural_task"
+      ]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "employment",
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "high",
+      "basis": "Annex III point 4(a) covers screening candidates, and the Article 6(3) exception cannot apply because the system profiles people."
+    }
+  },
+  {
+    "id": "dev-13",
+    "split": "dev",
+    "sector": "logistics",
+    "text": "Hello, Nina from operations at Canalway Fulfilment in Rotterdam, Netherlands. We want the warehouse system to track each picker's speed and error rate from their handheld scanner, then automatically give the best shifts and overtime to the fastest people and put the slowest on a performance watch list. Managers would only look at the list once a month.",
+    "intake": {
+      "title": "Picker performance and shift allocation",
+      "purpose": "Track each picker's performance and automatically allocate shifts and watch-list status",
+      "team": "Warehouse operations",
+      "use_area": "workforce_management",
+      "data_categories": [
+        "personal"
+      ],
+      "affected": [
+        "staff"
+      ],
+      "decision_mode": "fully_automatic",
+      "vendor": "Warehouse software vendor",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 10,
+      "hours_saved_per_week": 15,
+      "flags": [
+        "about_individuals",
+        "profiling",
+        "workplace_or_education"
+      ]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "employment",
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "high",
+      "basis": "Annex III point 4(b) covers AI that allocates tasks and monitors and evaluates the performance of workers."
+    }
+  },
+  {
+    "id": "dev-14",
+    "split": "dev",
+    "sector": "banking",
+    "text": "I'm Thomas in retail lending at Meridian Bank in Brussels, Belgium. We want a model that looks at an applicant's income, spending, existing debts and repayment history and gives them a score that decides whether we offer a personal loan and at what rate. Loan officers only look at borderline cases. Customers are in Belgium and Luxembourg. It would run in our own cloud tenancy in the EU.",
+    "intake": {
+      "title": "Personal loan scoring",
+      "purpose": "Score personal loan applicants to decide approval and interest rate",
+      "team": "Retail lending",
+      "use_area": "credit_scoring",
+      "data_categories": [
+        "personal",
+        "financial"
+      ],
+      "affected": [
+        "customers"
+      ],
+      "decision_mode": "fully_automatic",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 40,
+      "hours_saved_per_week": 80,
+      "flags": [
+        "about_individuals",
+        "profiling"
+      ]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "essential_services",
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "high",
+      "basis": "Annex III point 5(b) covers AI used to evaluate the creditworthiness of natural persons or establish their credit score."
+    }
+  },
+  {
+    "id": "dev-15",
+    "split": "dev",
+    "sector": "insurance",
+    "text": "Hi, Hannah from underwriting at Rheinsicher Insurance in Cologne, Germany. We'd like an AI to set prices for our life and private health insurance policies using the applicant's medical questionnaire, GP records they consent to share, lifestyle answers and age. Underwriters would see the suggested premium and approve it, though in practice they rarely change it. We'd use Google Gemini in Frankfurt.",
+    "intake": {
+      "title": "Life and health premium pricing",
+      "purpose": "Suggest life and health insurance premiums from medical and lifestyle information",
+      "team": "Underwriting",
+      "use_area": "insurance_pricing",
+      "data_categories": [
+        "personal",
+        "health",
+        "financial"
+      ],
+      "affected": [
+        "customers"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "Google",
+      "model": "Google Gemini",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 25,
+      "hours_saved_per_week": 50,
+      "flags": [
+        "about_individuals",
+        "profiling"
+      ]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "essential_services",
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "high",
+      "basis": "Annex III point 5(c) covers risk assessment and pricing for natural persons in life and health insurance."
+    }
+  },
+  {
+    "id": "dev-16",
+    "split": "dev",
+    "sector": "health",
+    "text": "This is Mikko from the regional emergency centre in Tampere, Finland. When someone calls the emergency number, we want an AI to listen to the call, pick up symptoms and urgency, and suggest a priority level and whether to send an ambulance, the fire service or advice only. The call handler sees the suggestion and makes the final call. Recordings stay on our own servers.",
+    "intake": {
+      "title": "Emergency call priority suggestions",
+      "purpose": "Suggest priority and the service to dispatch during emergency calls",
+      "team": "Emergency centre",
+      "use_area": "emergency_triage",
+      "data_categories": [
+        "personal",
+        "health"
+      ],
+      "affected": [
+        "public"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 70,
+      "hours_saved_per_week": 0.0,
+      "flags": [
+        "about_individuals",
+        "public_service_deployer"
+      ]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "essential_services",
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "high",
+      "basis": "Annex III point 5(d) covers AI used to evaluate and classify emergency calls and to prioritise the dispatch of emergency services."
+    }
+  },
+  {
+    "id": "dev-17",
+    "split": "dev",
+    "sector": "local government",
+    "text": "Hello, Julia from the social services office at Stadt Kirchbach, a town council in Austria. We want an AI to check applications for housing support and heating allowance against income, rent and household details and decide who qualifies and how much they get. Caseworkers would only check refusals if the person appeals.",
+    "intake": {
+      "title": "Benefit eligibility decisions",
+      "purpose": "Decide who qualifies for housing support and heating allowance and how much",
+      "team": "Social services",
+      "use_area": "public_benefits",
+      "data_categories": [
+        "personal",
+        "financial"
+      ],
+      "affected": [
+        "public"
+      ],
+      "decision_mode": "fully_automatic",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 12,
+      "hours_saved_per_week": 45,
+      "flags": [
+        "about_individuals",
+        "public_service_deployer"
+      ]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "essential_services",
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "high",
+      "basis": "Annex III point 5(a) covers AI used by public authorities to evaluate eligibility for public assistance benefits and services."
+    }
+  },
+  {
+    "id": "dev-18",
+    "split": "dev",
+    "sector": "legal",
+    "text": "Hi, Lucas from Veritas Forensics in Lisbon, Portugal. The national police have asked us to supply a tool that reads witness statements and interview transcripts in criminal investigations and rates how reliable each piece of evidence is, highlighting contradictions. Detectives would use the ratings to decide which lines of inquiry to follow. We'd run it on our own servers.",
+    "intake": {
+      "title": "Evidence reliability ratings for police",
+      "purpose": "Rate the reliability of witness statements and interview evidence for police investigations",
+      "team": "Forensic analytics",
+      "use_area": "law_enforcement",
+      "data_categories": [
+        "personal"
+      ],
+      "affected": [
+        "public"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 100,
+      "hours_saved_per_week": 0.0,
+      "flags": [
+        "about_individuals",
+        "public_service_deployer"
+      ]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "law_enforcement",
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "high",
+      "basis": "Annex III point 6(c) covers AI used by or on behalf of law enforcement to evaluate the reliability of evidence."
+    }
+  },
+  {
+    "id": "dev-19",
+    "split": "dev",
+    "sector": "public sector consulting",
+    "text": "Peter from Bohemia Digital Services in Prague, Czech Republic. We're building a system for the national immigration office that reads visa and residence-permit applications from people outside the EU, checks their documents and travel history, and gives each one a risk rating with a recommendation to approve or refuse. Case officers decide, but they'll see the rating first.",
+    "intake": {
+      "title": "Visa application risk rating",
+      "purpose": "Rate visa and residence-permit applications and recommend approval or refusal",
+      "team": "Public sector delivery",
+      "use_area": "migration_border",
+      "data_categories": [
+        "personal"
+      ],
+      "affected": [
+        "public"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "other"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 200,
+      "hours_saved_per_week": 0.0,
+      "flags": [
+        "about_individuals",
+        "profiling",
+        "public_service_deployer"
+      ]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "migration",
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "high",
+      "basis": "Annex III point 7(b) and (c) cover AI used to assess risks posed by people entering and to examine visa and residence applications."
+    }
+  },
+  {
+    "id": "dev-20",
+    "split": "dev",
+    "sector": "justice",
+    "text": "Hello, Elena from the court administration of a regional court in Valencia, Spain. Judges have asked for an AI assistant that reads the case file, finds the relevant laws and past rulings, and drafts a suggested outcome showing how the law applies to the facts of each case. The judge would edit and sign the judgment. It would run on the justice ministry's own cloud.",
+    "intake": {
+      "title": "Judicial case analysis assistant",
+      "purpose": "Research law and draft suggested outcomes applying the law to case facts for judges",
+      "team": "Court administration",
+      "use_area": "justice_democracy",
+      "data_categories": [
+        "personal",
+        "confidential"
+      ],
+      "affected": [
+        "public"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 35,
+      "hours_saved_per_week": 60,
+      "flags": [
+        "about_individuals",
+        "public_service_deployer"
+      ]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "justice_democracy",
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "high",
+      "basis": "Annex III point 8(a) covers AI that assists a judicial authority in researching and interpreting facts and law and applying the law to facts."
+    }
+  },
+  {
+    "id": "dev-21",
+    "split": "dev",
+    "sector": "manufacturing",
+    "text": "Marco from engineering at Ferroni Presse in Brescia, Italy. We build industrial metal presses and want to add a camera system with AI that spots a hand or arm in the danger zone and stops the press instantly. It would be sold as part of the machine's safety system. The camera doesn't record or identify anyone; it only detects body parts in the zone.",
+    "intake": {
+      "title": "Press danger-zone hand detection",
+      "purpose": "Detect hands in the press danger zone and stop the machine as a built-in safety function",
+      "team": "Engineering",
+      "use_area": "other",
+      "data_categories": [],
+      "affected": [
+        "customers"
+      ],
+      "decision_mode": "fully_automatic",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 0,
+      "hours_saved_per_week": 0.0,
+      "flags": [
+        "safety_component",
+        "medical_or_safety_reason"
+      ]
+    },
+    "labels": {
+      "tier": "high",
+      "annex_area": "product_safety",
+      "regimes": [],
+      "risk_level": "high",
+      "basis": "Article 6(1) applies because the AI is a safety component of machinery covered by Annex I Union harmonisation law."
+    }
+  },
+  {
+    "id": "dev-22",
+    "split": "dev",
+    "sector": "travel",
+    "text": "Hi, Jack from digital at Sunbridge Travel in Brisbane, Australia. We want a chat assistant on our website that answers customers' questions about bookings, baggage and visas, and can change flight dates when asked. It would see the customer's name, booking and passport details. Hard cases get handed to an agent. We'd build it on OpenAI GPT-4o, hosted in the US.",
+    "intake": {
+      "title": "Website booking chat assistant",
+      "purpose": "Answer customer booking questions and change flight dates by chat",
+      "team": "Digital",
+      "use_area": "customer_service",
+      "data_categories": [
+        "personal"
+      ],
+      "affected": [
+        "customers"
+      ],
+      "decision_mode": "acts_with_review",
+      "vendor": "OpenAI",
+      "model": "GPT-4o",
+      "processing_region": "US",
+      "people_regions": [
+        "AU"
+      ],
+      "org_regions": [
+        "AU"
+      ],
+      "expected_users": 5000,
+      "hours_saved_per_week": 60,
+      "flags": [
+        "interacts_with_people"
+      ]
+    },
+    "labels": {
+      "tier": "limited",
+      "annex_area": null,
+      "regimes": [
+        "au_app"
+      ],
+      "risk_level": "medium",
+      "basis": "Article 50(1) applies because customers interact directly with the AI system; no Annex III use is involved."
+    }
+  },
+  {
+    "id": "dev-23",
+    "split": "dev",
+    "sector": "retail",
+    "text": "Sarah from brand at Ashford & Lane, a homeware retailer in Manchester, UK. Our chief executive, Michael, has agreed to record one short video. We want an AI tool to turn it into versions where he appears to speak French, German and Spanish with matching lip movements, for our social media channels. He'd look and sound like himself saying things he never actually recorded.",
+    "intake": {
+      "title": "Multilingual CEO video",
+      "purpose": "Create translated videos of the chief executive speaking languages he did not record",
+      "team": "Brand",
+      "use_area": "content_generation",
+      "data_categories": [
+        "personal",
+        "biometric"
+      ],
+      "affected": [
+        "staff",
+        "public"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "AI video vendor",
+      "model": "",
+      "processing_region": "US",
+      "people_regions": [
+        "UK"
+      ],
+      "org_regions": [
+        "UK"
+      ],
+      "expected_users": 3,
+      "hours_saved_per_week": 5,
+      "flags": [
+        "generates_synthetic_media",
+        "deepfake"
+      ]
+    },
+    "labels": {
+      "tier": "limited",
+      "annex_area": null,
+      "regimes": [
+        "uk_gdpr"
+      ],
+      "risk_level": "medium",
+      "basis": "Article 50(4) requires deepfake video of a real person to be disclosed as artificially generated or manipulated."
+    }
+  },
+  {
+    "id": "dev-24",
+    "split": "dev",
+    "sector": "retail",
+    "text": "Hi, Grace in e-commerce at Kowhai Outdoor Gear in Wellington, New Zealand. We'd like to use an image generator to create lifestyle photos for our product pages and ads, like our tents on a beach or jackets on a mountain, instead of paying for photo shoots. No real people or customer data, just product shots and made-up scenes. We'd use OpenAI's image tool.",
+    "intake": {
+      "title": "Generated product lifestyle images",
+      "purpose": "Generate lifestyle images for product pages and ads",
+      "team": "E-commerce",
+      "use_area": "content_generation",
+      "data_categories": [],
+      "affected": [
+        "public"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "OpenAI",
+      "model": "GPT Image",
+      "processing_region": "US",
+      "people_regions": [
+        "NZ"
+      ],
+      "org_regions": [
+        "NZ"
+      ],
+      "expected_users": 4,
+      "hours_saved_per_week": 12,
+      "flags": [
+        "generates_synthetic_media"
+      ]
+    },
+    "labels": {
+      "tier": "limited",
+      "annex_area": null,
+      "regimes": [],
+      "risk_level": "medium",
+      "basis": "Article 50(2) transparency applies to AI-generated images; no personal data and no Annex III use."
+    }
+  },
+  {
+    "id": "dev-25",
+    "split": "dev",
+    "sector": "charity",
+    "text": "Ellen from communications at Greenfield Climate Trust in Cork, Ireland. We want an AI to write and publish short news articles on our website each day about climate policy and government decisions, straight from official sources, without a person editing them first. They'd be read by the public and journalists. No personal information is involved. We'd use Google Gemini.",
+    "intake": {
+      "title": "Automatic climate policy news articles",
+      "purpose": "Write and publish daily public-interest news articles on climate policy",
+      "team": "Communications",
+      "use_area": "content_generation",
+      "data_categories": [],
+      "affected": [
+        "public"
+      ],
+      "decision_mode": "fully_automatic",
+      "vendor": "Google",
+      "model": "Google Gemini",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 3,
+      "hours_saved_per_week": 15,
+      "flags": [
+        "generates_synthetic_media"
+      ]
+    },
+    "labels": {
+      "tier": "limited",
+      "annex_area": null,
+      "regimes": [],
+      "risk_level": "medium",
+      "basis": "Article 50(4) applies to AI-generated text published to inform the public on matters of public interest without human editorial review."
+    }
+  },
+  {
+    "id": "dev-26",
+    "split": "dev",
+    "sector": "utilities",
+    "text": "Hello, Ryan in customer operations at Lone Star Power Co-op in Austin, Texas. We want a phone voice bot that answers outage calls, takes the caller's name, address and account number, logs the fault and gives an estimated restore time. Callers can ask for a person at any time. It would run on Google Cloud in the US.",
+    "intake": {
+      "title": "Outage reporting voice bot",
+      "purpose": "Answer outage calls, log faults and give restore times",
+      "team": "Customer operations",
+      "use_area": "customer_service",
+      "data_categories": [
+        "personal"
+      ],
+      "affected": [
+        "customers"
+      ],
+      "decision_mode": "acts_with_review",
+      "vendor": "Google Cloud",
+      "model": "Google Gemini",
+      "processing_region": "US",
+      "people_regions": [
+        "US"
+      ],
+      "org_regions": [
+        "US"
+      ],
+      "expected_users": 20000,
+      "hours_saved_per_week": 90,
+      "flags": [
+        "interacts_with_people"
+      ]
+    },
+    "labels": {
+      "tier": "limited",
+      "annex_area": null,
+      "regimes": [
+        "us_state"
+      ],
+      "risk_level": "medium",
+      "basis": "Article 50(1) applies because callers interact directly with an AI voice system; the bot does not control the grid."
+    }
+  },
+  {
+    "id": "dev-27",
+    "split": "dev",
+    "sector": "legal",
+    "text": "Hi, Andrew at Harper & Cole LLP in New York. We want a chat assistant on our website that asks potential clients about their legal problem, collects their contact details and a summary, and books a call with the right lawyer. It wouldn't give legal advice or decide whether we take the case; partners decide that. We'd use Microsoft Copilot Studio.",
+    "intake": {
+      "title": "Client intake chat assistant",
+      "purpose": "Collect potential clients' details and problem summaries and book calls",
+      "team": "Business development",
+      "use_area": "customer_service",
+      "data_categories": [
+        "personal",
+        "confidential"
+      ],
+      "affected": [
+        "public"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "Microsoft",
+      "model": "Microsoft Copilot Studio",
+      "processing_region": "US",
+      "people_regions": [
+        "US"
+      ],
+      "org_regions": [
+        "US"
+      ],
+      "expected_users": 800,
+      "hours_saved_per_week": 10,
+      "flags": [
+        "interacts_with_people"
+      ]
+    },
+    "labels": {
+      "tier": "limited",
+      "annex_area": null,
+      "regimes": [
+        "us_state"
+      ],
+      "risk_level": "medium",
+      "basis": "Article 50(1) applies because members of the public interact directly with the chat assistant."
+    }
+  },
+  {
+    "id": "dev-28",
+    "split": "dev",
+    "sector": "media",
+    "text": "Anna from Radio Polder in Amsterdam, Netherlands. Our presenter Wendy has agreed that we can clone her voice so an AI reads out hourly local weather and traffic updates overnight in her voice. Listeners would hear what sounds like Wendy live, though she's not there. The voice model would be hosted in the EU.",
+    "intake": {
+      "title": "Cloned presenter voice for overnight updates",
+      "purpose": "Read overnight weather and traffic updates in a cloned presenter voice",
+      "team": "Programming",
+      "use_area": "content_generation",
+      "data_categories": [
+        "personal",
+        "biometric"
+      ],
+      "affected": [
+        "staff",
+        "public"
+      ],
+      "decision_mode": "fully_automatic",
+      "vendor": "AI voice vendor",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 2,
+      "hours_saved_per_week": 14,
+      "flags": [
+        "generates_synthetic_media",
+        "deepfake"
+      ]
+    },
+    "labels": {
+      "tier": "limited",
+      "annex_area": null,
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "medium",
+      "basis": "Article 50(2) and 50(4) apply to synthetic audio that resembles a real person; it is not an Annex III use."
+    }
+  },
+  {
+    "id": "dev-29",
+    "split": "dev",
+    "sector": "education",
+    "text": "Hello, Chloe from Wattle Grove High School in Perth, Australia. We'd like a homework help chatbot that our students, aged 12 to 17, can ask questions about maths and science at home. It explains steps but doesn't mark work or affect grades. It would see the student's first name and year group. We'd use Google Gemini for Education, hosted in Australia.",
+    "intake": {
+      "title": "Homework help chatbot for students",
+      "purpose": "Answer students' maths and science questions at home",
+      "team": "Teaching and learning",
+      "use_area": "customer_service",
+      "data_categories": [
+        "personal",
+        "children"
+      ],
+      "affected": [
+        "customers"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "Google",
+      "model": "Google Gemini",
+      "processing_region": "AU",
+      "people_regions": [
+        "AU"
+      ],
+      "org_regions": [
+        "AU"
+      ],
+      "expected_users": 900,
+      "hours_saved_per_week": 0.0,
+      "flags": [
+        "interacts_with_people",
+        "workplace_or_education",
+        "public_service_deployer"
+      ]
+    },
+    "labels": {
+      "tier": "limited",
+      "annex_area": null,
+      "regimes": [
+        "au_app"
+      ],
+      "risk_level": "high",
+      "basis": "Article 50(1) applies because students interact directly with the chatbot; it does not assess or admit students under Annex III point 3."
+    }
+  },
+  {
+    "id": "dev-30",
+    "split": "dev",
+    "sector": "HR services",
+    "text": "Hi, Simon from people services at Northgate Group, with offices in London and Dublin. We want an HR chatbot on the intranet that answers staff questions about leave, expenses and policies, using our handbook and the employee's own leave balance. It doesn't make decisions about anyone. We'd build it on Microsoft Copilot in our UK tenancy.",
+    "intake": {
+      "title": "Staff HR policy chatbot",
+      "purpose": "Answer staff questions on leave, expenses and HR policies",
+      "team": "People services",
+      "use_area": "customer_service",
+      "data_categories": [
+        "personal"
+      ],
+      "affected": [
+        "staff"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "Microsoft",
+      "model": "Microsoft Copilot",
+      "processing_region": "UK",
+      "people_regions": [
+        "UK",
+        "EU"
+      ],
+      "org_regions": [
+        "UK",
+        "EU"
+      ],
+      "expected_users": 1200,
+      "hours_saved_per_week": 25,
+      "flags": [
+        "interacts_with_people"
+      ]
+    },
+    "labels": {
+      "tier": "limited",
+      "annex_area": null,
+      "regimes": [
+        "uk_gdpr",
+        "eu_gdpr"
+      ],
+      "risk_level": "medium",
+      "basis": "Article 50(1) applies because staff interact directly with the chatbot; it takes no employment decisions under Annex III point 4."
+    }
+  },
+  {
+    "id": "dev-31",
+    "split": "dev",
+    "sector": "local government",
+    "text": "Erik from digital services at Lindvik Municipality in Sweden. We want a chat assistant on the council website that answers residents' questions about bin collection days, parking permits and opening hours, and can book a bulky-waste pickup using the resident's address. It doesn't decide on any applications. It would run on Azure OpenAI in Sweden.",
+    "intake": {
+      "title": "Council website chat assistant",
+      "purpose": "Answer residents' questions and book bulky-waste pickups",
+      "team": "Digital services",
+      "use_area": "customer_service",
+      "data_categories": [
+        "personal"
+      ],
+      "affected": [
+        "public"
+      ],
+      "decision_mode": "acts_with_review",
+      "vendor": "Microsoft Azure",
+      "model": "Azure OpenAI GPT-4o",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 15000,
+      "hours_saved_per_week": 30,
+      "flags": [
+        "interacts_with_people",
+        "public_service_deployer"
+      ]
+    },
+    "labels": {
+      "tier": "limited",
+      "annex_area": null,
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "medium",
+      "basis": "Article 50(1) applies because residents interact directly with the assistant; it does not decide eligibility for public services."
+    }
+  },
+  {
+    "id": "dev-32",
+    "split": "dev",
+    "sector": "logistics",
+    "text": "Hi, Stefan from fleet safety at Autobahn Freight in Leipzig, Germany. We want a dashboard camera in each truck cab that watches the driver's eyes and head position and sounds an alarm when they look drowsy or are nodding off. It only alerts the driver in the cab; nothing is stored or sent to managers, and it isn't used to judge anyone's performance.",
+    "intake": {
+      "title": "Driver drowsiness alarm",
+      "purpose": "Detect driver drowsiness from eye and head movement and sound an alarm",
+      "team": "Fleet safety",
+      "use_area": "other",
+      "data_categories": [
+        "personal",
+        "biometric"
+      ],
+      "affected": [
+        "staff"
+      ],
+      "decision_mode": "fully_automatic",
+      "vendor": "Fleet camera vendor",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 300,
+      "hours_saved_per_week": 0.0,
+      "flags": [
+        "workplace_or_education",
+        "medical_or_safety_reason"
+      ]
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "medium",
+      "basis": "Recital 18 says detecting physical states such as fatigue is not emotion recognition, and alerts to the driver do not evaluate workers."
+    }
+  },
+  {
+    "id": "dev-33",
+    "split": "dev",
+    "sector": "banking",
+    "text": "Hello, Lisa from onboarding at Baltic Mint Bank in Tallinn, Estonia. When new customers open an account in our app, we want them to take a selfie that the AI compares with the photo on their passport, to confirm they are the person on the document. It's a one-to-one check only, nothing is searched against other people. Staff review any failed checks.",
+    "intake": {
+      "title": "Selfie-to-passport identity check",
+      "purpose": "Confirm new customers match their passport photo during onboarding",
+      "team": "Onboarding",
+      "use_area": "biometric_verification",
+      "data_categories": [
+        "personal",
+        "biometric"
+      ],
+      "affected": [
+        "customers"
+      ],
+      "decision_mode": "acts_with_review",
+      "vendor": "Identity verification vendor",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 3000,
+      "hours_saved_per_week": 40,
+      "flags": [
+        "about_individuals"
+      ]
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "high",
+      "basis": "Annex III point 1(a) excludes biometric verification that only confirms a person is who they claim to be."
+    }
+  },
+  {
+    "id": "dev-34",
+    "split": "dev",
+    "sector": "banking",
+    "text": "Chris from the fraud team at Banque Lumière in Lille, France. We want a model that scores every card payment for signs of fraud, like unusual locations or amounts, and temporarily holds suspicious payments until the customer confirms by text. Analysts review held payments daily. It isn't used for lending decisions.",
+    "intake": {
+      "title": "Card payment fraud scoring",
+      "purpose": "Score card payments for fraud and hold suspicious ones for confirmation",
+      "team": "Fraud",
+      "use_area": "fraud_detection",
+      "data_categories": [
+        "personal",
+        "financial"
+      ],
+      "affected": [
+        "customers"
+      ],
+      "decision_mode": "acts_with_review",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 20,
+      "hours_saved_per_week": 50,
+      "flags": [
+        "about_individuals"
+      ]
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "medium",
+      "basis": "Annex III point 5(b) excludes AI systems used to detect financial fraud from creditworthiness assessment."
+    }
+  },
+  {
+    "id": "dev-35",
+    "split": "dev",
+    "sector": "insurance",
+    "text": "Hi, Fiona in pricing at Shamrock Motor Insurance in Limerick, Ireland. We want a model that suggests a premium band for car insurance quotes based on the driver's age, postcode, claims history and car type. Underwriters set the final price. It's only for motor policies, not life or health cover.",
+    "intake": {
+      "title": "Motor insurance premium suggestions",
+      "purpose": "Suggest car insurance premium bands for underwriters",
+      "team": "Pricing",
+      "use_area": "insurance_pricing",
+      "data_categories": [
+        "personal",
+        "financial"
+      ],
+      "affected": [
+        "customers"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 15,
+      "hours_saved_per_week": 20,
+      "flags": [
+        "about_individuals",
+        "profiling"
+      ]
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "medium",
+      "basis": "Annex III point 5(c) covers only life and health insurance, so motor insurance pricing is not high-risk."
+    }
+  },
+  {
+    "id": "dev-36",
+    "split": "dev",
+    "sector": "manufacturing",
+    "text": "Anja in finance at Weberwerk Components in Stuttgart, Germany. Before we give a business customer 60-day payment terms, we want an AI to read the company's published accounts, payment records and trade references and suggest a credit limit. These are all limited companies; we don't look at any individual's finances. Our credit controller decides.",
+    "intake": {
+      "title": "Business customer credit limits",
+      "purpose": "Suggest credit limits for business customers from company accounts",
+      "team": "Finance",
+      "use_area": "analytics_forecasting",
+      "data_categories": [
+        "confidential"
+      ],
+      "affected": [
+        "customers"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 4,
+      "hours_saved_per_week": 6,
+      "flags": []
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": [],
+      "risk_level": "low",
+      "basis": "Annex III point 5(b) covers creditworthiness of natural persons only, and this assesses companies."
+    }
+  },
+  {
+    "id": "dev-37",
+    "split": "dev",
+    "sector": "HR services",
+    "text": "Hello, Megan at Flanders Talent Partners in Ghent, Belgium. We'd like an AI that only checks whether each job application is complete, for example that a CV, ID copy and work permit are attached, and converts files to PDF. It doesn't score, rank or rate anyone; our recruiters read every application and decide. We'd use Microsoft Copilot.",
+    "intake": {
+      "title": "Application completeness check",
+      "purpose": "Check job applications have all required documents and convert files",
+      "team": "Recruitment",
+      "use_area": "recruitment",
+      "data_categories": [
+        "personal"
+      ],
+      "affected": [
+        "public"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "Microsoft",
+      "model": "Microsoft Copilot",
+      "processing_region": "EU",
+      "people_regions": [
+        "EU"
+      ],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 12,
+      "hours_saved_per_week": 8,
+      "flags": [
+        "narrow_procedural_task"
+      ]
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": [
+        "eu_gdpr"
+      ],
+      "risk_level": "medium",
+      "basis": "Article 6(3)(a) exempts a narrow procedural task in Annex III point 4 that does not profile people."
+    }
+  },
+  {
+    "id": "dev-38",
+    "split": "dev",
+    "sector": "insurance",
+    "text": "Ben from the software team at Coral Coast Insurance in Sydney, Australia. Our developers want an AI coding assistant in their editors to suggest code, write tests and explain our older systems. It would see our private source code and internal design documents, but no customer records. We'd use GitHub Copilot Business.",
+    "intake": {
+      "title": "Developer coding assistant",
+      "purpose": "Suggest code, write tests and explain internal systems for developers",
+      "team": "Software engineering",
+      "use_area": "general_productivity",
+      "data_categories": [
+        "confidential"
+      ],
+      "affected": [
+        "staff"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "GitHub",
+      "model": "GitHub Copilot",
+      "processing_region": "US",
+      "people_regions": [
+        "AU"
+      ],
+      "org_regions": [
+        "AU"
+      ],
+      "expected_users": 45,
+      "hours_saved_per_week": 60,
+      "flags": []
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": [],
+      "risk_level": "low",
+      "basis": "No Article 5 practice, Annex III use or Article 50 duty applies to an internal coding assistant."
+    }
+  },
+  {
+    "id": "dev-39",
+    "split": "dev",
+    "sector": "retail",
+    "text": "Hi, Hayley from customer care at Pohutukawa Home in Auckland, New Zealand. We want an AI to summarise long customer complaint emails and suggest a reply draft for our team, who edit and send every reply themselves. The emails contain names, addresses and order details. The AI service runs on servers in the United States.",
+    "intake": {
+      "title": "Complaint email summaries and draft replies",
+      "purpose": "Summarise complaint emails and draft replies for staff to edit",
+      "team": "Customer care",
+      "use_area": "general_productivity",
+      "data_categories": [
+        "personal"
+      ],
+      "affected": [
+        "customers"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "OpenAI",
+      "model": "GPT-4o",
+      "processing_region": "US",
+      "people_regions": [
+        "NZ"
+      ],
+      "org_regions": [
+        "NZ"
+      ],
+      "expected_users": 10,
+      "hours_saved_per_week": 15,
+      "flags": []
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": [
+        "nz_ipp"
+      ],
+      "risk_level": "medium",
+      "basis": "No Article 5 practice, Annex III use or Article 50 duty applies, as staff review every reply before it is sent."
+    }
+  },
+  {
+    "id": "dev-40",
+    "split": "dev",
+    "sector": "retail",
+    "text": "Kevin in planning at Prairie Goods, a grocery chain with stores in Ohio and Indiana. We want an AI to forecast weekly demand for each product in each store from past sales, weather and holidays, and suggest order quantities. It uses store-level sales totals only, no loyalty card or customer data. Buyers approve every order.",
+    "intake": {
+      "title": "Store demand forecasting",
+      "purpose": "Forecast weekly product demand per store and suggest orders",
+      "team": "Planning",
+      "use_area": "analytics_forecasting",
+      "data_categories": [
+        "confidential"
+      ],
+      "affected": [],
+      "decision_mode": "suggests",
+      "vendor": "",
+      "model": "",
+      "processing_region": "US",
+      "people_regions": [],
+      "org_regions": [
+        "US"
+      ],
+      "expected_users": 8,
+      "hours_saved_per_week": 20,
+      "flags": []
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": [],
+      "risk_level": "low",
+      "basis": "Demand forecasting with no personal data triggers no Article 5, Annex III or Article 50 obligation."
+    }
+  },
+  {
+    "id": "dev-41",
+    "split": "dev",
+    "sector": "logistics",
+    "text": "Hello, Gary from transport planning at Pennine Haulage in Sheffield, UK. We want an AI to plan the best routes and loads for our trucks between our depots and customers' warehouses, to cut fuel and empty miles. It uses depot addresses, pallet volumes and traffic data only. Planners approve each day's plan.",
+    "intake": {
+      "title": "Depot route and load planning",
+      "purpose": "Optimise truck routes and loads between depots and warehouses",
+      "team": "Transport planning",
+      "use_area": "analytics_forecasting",
+      "data_categories": [
+        "confidential"
+      ],
+      "affected": [],
+      "decision_mode": "suggests",
+      "vendor": "",
+      "model": "",
+      "processing_region": "UK",
+      "people_regions": [],
+      "org_regions": [
+        "UK"
+      ],
+      "expected_users": 6,
+      "hours_saved_per_week": 12,
+      "flags": []
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": [],
+      "risk_level": "low",
+      "basis": "Route optimisation with no personal data falls outside Article 5, Annex III and Article 50."
+    }
+  },
+  {
+    "id": "dev-42",
+    "split": "dev",
+    "sector": "health",
+    "text": "Hi, Martin in accounts payable at Klinikum Seeblick, a hospital in Salzburg, Austria. We'd like an AI to read supplier invoices for medical supplies, pull out amounts, order numbers and VAT, and match them to purchase orders. No patient information is on these invoices. Our clerks approve each payment.",
+    "intake": {
+      "title": "Supplier invoice matching",
+      "purpose": "Extract invoice details and match them to purchase orders",
+      "team": "Accounts payable",
+      "use_area": "document_processing",
+      "data_categories": [
+        "confidential"
+      ],
+      "affected": [],
+      "decision_mode": "suggests",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 5,
+      "hours_saved_per_week": 18,
+      "flags": []
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": [],
+      "risk_level": "low",
+      "basis": "Invoice processing with no personal data falls outside Article 5, Annex III and Article 50."
+    }
+  },
+  {
+    "id": "dev-43",
+    "split": "dev",
+    "sector": "legal",
+    "text": "Rachel from knowledge management at Tasman Legal, with offices in Melbourne and Wellington. We want an AI search tool over our own library of template contracts and precedent clauses, so lawyers can ask in plain words and get the right clause with a link. The library holds no client names or personal details. Lawyers check every clause they use.",
+    "intake": {
+      "title": "Precedent clause search",
+      "purpose": "Let lawyers search the internal precedent and template library in plain words",
+      "team": "Knowledge management",
+      "use_area": "general_productivity",
+      "data_categories": [
+        "confidential"
+      ],
+      "affected": [
+        "staff"
+      ],
+      "decision_mode": "suggests",
+      "vendor": "Microsoft",
+      "model": "Microsoft Copilot",
+      "processing_region": "AU",
+      "people_regions": [
+        "AU",
+        "NZ"
+      ],
+      "org_regions": [
+        "AU",
+        "NZ"
+      ],
+      "expected_users": 120,
+      "hours_saved_per_week": 35,
+      "flags": []
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": [],
+      "risk_level": "low",
+      "basis": "Internal document search with no personal data triggers no Article 5, Annex III or Article 50 obligation."
+    }
+  },
+  {
+    "id": "dev-44",
+    "split": "dev",
+    "sector": "retail",
+    "text": "Hi, Tyler in e-commerce at Cascade Outfitters in Seattle. We want an AI that recommends products to shoppers on our website and in emails based on what they've browsed and bought. We ship to customers across the US and to Germany and France. It runs automatically on AWS in the US; the marketing team reviews performance monthly.",
+    "intake": {
+      "title": "Product recommendations",
+      "purpose": "Recommend products to shoppers from browsing and purchase history",
+      "team": "E-commerce",
+      "use_area": "marketing_personalisation",
+      "data_categories": [
+        "personal"
+      ],
+      "affected": [
+        "customers"
+      ],
+      "decision_mode": "fully_automatic",
+      "vendor": "AWS",
+      "model": "Amazon Personalize",
+      "processing_region": "US",
+      "people_regions": [
+        "US",
+        "EU"
+      ],
+      "org_regions": [
+        "US"
+      ],
+      "expected_users": 6,
+      "hours_saved_per_week": 10,
+      "flags": [
+        "about_individuals",
+        "profiling"
+      ]
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": [
+        "us_state",
+        "eu_gdpr"
+      ],
+      "risk_level": "medium",
+      "basis": "Product recommendations are not listed in Article 5 or Annex III and carry no Article 50 duty."
+    }
+  },
+  {
+    "id": "dev-45",
+    "split": "dev",
+    "sector": "manufacturing",
+    "text": "Lars from maintenance at Vasterholm Paper Mill in Sundsvall, Sweden. We want an AI to watch vibration and temperature readings from our rollers and motors and predict which parts will fail in the next few weeks, so we can schedule repairs. It only uses machine sensor data, and engineers decide on every repair.",
+    "intake": {
+      "title": "Predictive maintenance for mill machinery",
+      "purpose": "Predict machine part failures from sensor data to plan repairs",
+      "team": "Maintenance",
+      "use_area": "analytics_forecasting",
+      "data_categories": [
+        "confidential"
+      ],
+      "affected": [],
+      "decision_mode": "suggests",
+      "vendor": "",
+      "model": "",
+      "processing_region": "EU",
+      "people_regions": [],
+      "org_regions": [
+        "EU"
+      ],
+      "expected_users": 10,
+      "hours_saved_per_week": 8,
+      "flags": []
+    },
+    "labels": {
+      "tier": "minimal",
+      "annex_area": null,
+      "regimes": [],
+      "risk_level": "low",
+      "basis": "Maintenance forecasting that suggests repairs is not a safety component and falls outside Article 5, Annex III and Article 50."
+    }
+  }
+]

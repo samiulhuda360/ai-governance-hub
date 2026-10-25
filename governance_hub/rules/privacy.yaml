@@ -1,0 +1,327 @@
+# Privacy obligations by region. A regime applies when the use case handles information about identifiable
+# people and either the people are in the region or the organisation is established there.
+# Thresholds and exemptions (for example Australia's small-business exemption or US state applicability
+# thresholds) are flagged for the privacy reviewer, not decided here.
+
+regimes:
+  eu_gdpr:
+    name: EU GDPR
+    region: EU
+    law: Regulation (EU) 2016/679 (General Data Protection Regulation)
+    adequate: [UK, NZ]
+    adequacy_note: >-
+      The European Commission has adequacy decisions for the UK and New Zealand, and for US organisations
+      certified under the EU-US Data Privacy Framework (Art. 45). Elsewhere, use standard contractual clauses
+      or another Art. 46 safeguard.
+    obligations:
+      - id: gdpr_6
+        when: {always: true}
+        title: Lawful basis
+        source: GDPR Art. 6
+        explain: Record the lawful basis for using people's information in this way.
+      - id: gdpr_5_1_c
+        when: {always: true}
+        title: Data minimisation
+        source: GDPR Art. 5(1)(c)
+        explain: Only send the AI the personal information that is adequate, relevant and necessary for the purpose.
+      - id: gdpr_13_14
+        when: {always: true}
+        title: Tell people
+        source: GDPR Arts. 13-14
+        explain: Update the privacy notice so people know their information is used by this AI, and why.
+      - id: gdpr_9
+        when: {data_any: [health, biometric]}
+        title: Special-category information
+        source: GDPR Art. 9
+        explain: >-
+          Health data and biometric data used to identify people are special categories. Processing is prohibited
+          unless one of the Art. 9(2) conditions applies, such as explicit consent.
+      - id: gdpr_8
+        when: {data_any: [children]}
+        title: Children's information
+        source: GDPR Art. 8; Recital 38
+        explain: >-
+          Children merit specific protection. For online services offered directly to a child relying on consent,
+          parental consent is needed below the age of digital consent (16 unless a member state sets 13-15).
+      - id: gdpr_22
+        when:
+          decision_mode: [fully_automatic]
+          flag: about_individuals
+        title: Solely automated decisions
+        source: GDPR Art. 22
+        explain: >-
+          People have the right not to be subject to a decision based solely on automated processing that has legal
+          or similarly significant effects, unless an exception applies; then they must be able to get human
+          intervention, express their view and contest the decision.
+      - id: gdpr_35
+        when:
+          any:
+            - {tier: [high]}
+            - {flags_all: [profiling, about_individuals]}
+            - {data_any: [health, biometric, children]}
+            - {affected_any: [public], data_any: [biometric]}
+        title: Data protection impact assessment
+        source: GDPR Art. 35(1) and 35(3)
+        explain: >-
+          A DPIA is required before processing likely to result in a high risk, including systematic evaluation of
+          people by automated means that produces significant effects, large-scale special-category processing,
+          and large-scale monitoring of public areas.
+      - id: gdpr_28
+        when: {vendor: true}
+        title: Processor contract
+        source: GDPR Art. 28
+        explain: The vendor processes personal information for us, so a contract with the Art. 28(3) terms is needed.
+      - id: gdpr_44
+        when: {transfer: true}
+        title: International transfer
+        source: GDPR Arts. 44-46
+        explain: Personal information leaves the EU/EEA, so the transfer needs an adequacy decision or an appropriate safeguard.
+
+  uk_gdpr:
+    name: UK GDPR
+    region: UK
+    law: UK GDPR and the Data Protection Act 2018
+    adequate: [EU, NZ]
+    adequacy_note: >-
+      The UK has adequacy regulations for the EU/EEA and New Zealand, and the UK Extension to the EU-US Data
+      Privacy Framework. Elsewhere, use the International Data Transfer Agreement or the UK Addendum.
+    obligations:
+      - id: ukgdpr_6
+        when: {always: true}
+        title: Lawful basis
+        source: UK GDPR Art. 6
+        explain: Record the lawful basis for using people's information in this way.
+      - id: ukgdpr_5_1_c
+        when: {always: true}
+        title: Data minimisation
+        source: UK GDPR Art. 5(1)(c)
+        explain: Only send the AI the personal information that is necessary for the purpose.
+      - id: ukgdpr_13_14
+        when: {always: true}
+        title: Tell people
+        source: UK GDPR Arts. 13-14
+        explain: Update the privacy notice so people know their information is used by this AI, and why.
+      - id: ukgdpr_9
+        when: {data_any: [health, biometric]}
+        title: Special-category information
+        source: UK GDPR Art. 9; DPA 2018 Schedule 1
+        explain: Health and identifying biometric data need an Art. 9 condition, and often a Schedule 1 condition and an appropriate policy document.
+      - id: ukgdpr_8
+        when: {data_any: [children]}
+        title: Children's information
+        source: UK GDPR Art. 8; ICO Age Appropriate Design Code
+        explain: >-
+          The UK age of consent for online services is 13. Online services likely to be accessed by children must
+          follow the ICO's Age Appropriate Design Code.
+      - id: ukgdpr_22
+        when:
+          decision_mode: [fully_automatic]
+          flag: about_individuals
+        title: Solely automated decisions
+        source: UK GDPR Art. 22 (Arts. 22A-22D as amended by the Data (Use and Access) Act 2025)
+        explain: >-
+          Significant decisions based solely on automated processing need safeguards: telling the person, letting
+          them make representations, obtaining human intervention and contesting the decision. Check which version
+          of the article is in force for the decision date.
+      - id: ukgdpr_35
+        when:
+          any:
+            - {tier: [high]}
+            - {flags_all: [profiling, about_individuals]}
+            - {data_any: [health, biometric, children]}
+            - {affected_any: [public], data_any: [biometric]}
+        title: Data protection impact assessment
+        source: UK GDPR Art. 35
+        explain: A DPIA is required before processing likely to result in a high risk to people's rights and freedoms.
+      - id: ukgdpr_28
+        when: {vendor: true}
+        title: Processor contract
+        source: UK GDPR Art. 28
+        explain: The vendor processes personal information for us, so a contract with the Art. 28(3) terms is needed.
+      - id: ukgdpr_44
+        when: {transfer: true}
+        title: International transfer
+        source: UK GDPR Arts. 44-46
+        explain: Personal information leaves the UK, so the transfer needs UK adequacy regulations or an appropriate safeguard.
+
+  au_app:
+    name: Australian Privacy Principles
+    region: AU
+    law: Privacy Act 1988 (Cth), Schedule 1
+    adequate: []
+    adequacy_note: >-
+      APP 8.1 requires reasonable steps so the overseas recipient does not breach the APPs; APP 8.2 lists the
+      exceptions. The entity generally remains accountable for the overseas recipient's handling (s 16C).
+    obligations:
+      - id: app_1
+        when: {always: true}
+        title: Open and transparent management
+        source: APP 1
+        explain: The privacy policy must describe how personal information is handled, including by this AI.
+      - id: app_1_7
+        when:
+          decision_mode: [acts_with_review, fully_automatic]
+          flag: about_individuals
+        title: Automated decisions in the privacy policy
+        source: APP 1.7-1.9 (Privacy and Other Legislation Amendment Act 2024, from 10 December 2026)
+        explain: >-
+          Where a computer program uses personal information to make, or substantially help make, decisions that
+          could significantly affect people's rights or interests, the privacy policy must say so.
+      - id: app_3
+        when: {always: true}
+        title: Collect only what is reasonably necessary
+        source: APP 3
+        explain: Collect personal information only if it is reasonably necessary for the organisation's functions or activities.
+      - id: app_3_3
+        when: {data_any: [health, biometric]}
+        title: Sensitive information needs consent
+        source: APP 3.3
+        explain: Health information and biometric information or templates are sensitive information; collecting them generally needs consent.
+      - id: app_5
+        when: {always: true}
+        title: Notify people at collection
+        source: APP 5
+        explain: Tell people what is collected, why, and who it is disclosed to, including the AI vendor.
+      - id: app_6
+        when: {always: true}
+        title: Use only for the original purpose
+        source: APP 6
+        explain: Using information collected for one purpose in a new AI tool needs consent or an APP 6.2 exception.
+      - id: app_8
+        when: {transfer: true}
+        title: Cross-border disclosure
+        source: APP 8
+        explain: Personal information is disclosed to a recipient outside Australia.
+      - id: app_10
+        when: {flag: about_individuals}
+        title: Quality of personal information
+        source: APP 10
+        explain: Take reasonable steps so the information used is accurate, up to date, complete and relevant.
+      - id: app_11
+        when: {always: true}
+        title: Security
+        source: APP 11
+        explain: Protect the information from misuse, interference, loss and unauthorised access, and destroy it when no longer needed.
+      - id: app_pia
+        when:
+          any:
+            - {tier: [high]}
+            - {data_any: [health, biometric, children]}
+        title: Privacy impact assessment
+        source: OAIC Guide to undertaking privacy impact assessments; Privacy (Australian Government Agencies - Governance) APP Code 2017
+        explain: A PIA is recommended for high privacy risk projects, and mandatory for Australian Government agencies.
+
+  nz_ipp:
+    name: NZ Information Privacy Principles
+    region: NZ
+    law: Privacy Act 2020, section 22
+    adequate: []
+    adequacy_note: >-
+      IPP 12 allows disclosure overseas only if the recipient is subject to comparable safeguards, the person is
+      told and authorises it, or another IPP 12 ground applies. Using a cloud provider purely to store or process
+      information for us is treated as use by us (section 11).
+    obligations:
+      - id: ipp_1
+        when: {always: true}
+        title: Collect only for a lawful, necessary purpose
+        source: IPP 1
+        explain: Only collect personal information needed for a lawful purpose connected with the organisation's functions.
+      - id: ipp_3
+        when: {always: true}
+        title: Tell people
+        source: IPP 3
+        explain: Tell people what is collected and why, who will receive it, and their rights of access and correction.
+      - id: ipp_4
+        when: {data_any: [children]}
+        title: Fair collection, especially from children
+        source: IPP 4
+        explain: Collection must be lawful, fair and not unreasonably intrusive, with particular care for children and young people.
+      - id: ipp_5
+        when: {always: true}
+        title: Security
+        source: IPP 5
+        explain: Protect personal information against loss, misuse and unauthorised access.
+      - id: ipp_8
+        when: {flag: about_individuals}
+        title: Check accuracy before use
+        source: IPP 8
+        explain: Take reasonable steps to check information is accurate, up to date, complete, relevant and not misleading before using it.
+      - id: ipp_10
+        when: {always: true}
+        title: Use only for the original purpose
+        source: IPP 10
+        explain: Use the information only for the purpose it was collected for, unless an IPP 10 exception applies.
+      - id: ipp_bio
+        when: {data_any: [biometric]}
+        title: Biometric Processing Privacy Code
+        source: Biometric Processing Privacy Code 2025
+        explain: >-
+          Automated biometric processing must follow the Code's rules, including a proportionality assessment,
+          privacy safeguards and limits on inferring health, personality or emotions.
+      - id: ipp_12
+        when: {transfer: true}
+        title: Disclosure overseas
+        source: IPP 12; Privacy Act 2020 s 11
+        explain: Check whether the overseas vendor only processes on our behalf (s 11) or is a disclosure that IPP 12 governs.
+      - id: ipp_pia
+        when:
+          any:
+            - {tier: [high]}
+            - {data_any: [health, biometric, children]}
+        title: Privacy impact assessment
+        source: Office of the Privacy Commissioner, Privacy Impact Assessment Toolkit
+        explain: The Privacy Commissioner recommends a privacy impact assessment for new uses of personal information with higher risk.
+
+  us_state:
+    name: US state privacy laws
+    region: US
+    law: Comprehensive state privacy laws (for example California CCPA/CPRA, Virginia VCDPA, Colorado CPA)
+    adequate: []
+    adequacy_note: >-
+      Most state laws do not restrict where data is processed, but service-provider or processor contracts are
+      required. Check each state law's applicability thresholds.
+    obligations:
+      - id: us_notice
+        when: {always: true}
+        title: Notice and consumer rights
+        source: Cal. Civ. Code 1798.100 and 1798.105-1798.110; VCDPA 59.1-577; CPA 6-1-1306
+        explain: Give notice at collection and honour rights to access, correct and delete personal data.
+      - id: us_sensitive
+        when: {data_any: [health, biometric, children, financial]}
+        title: Sensitive data
+        source: VCDPA 59.1-578; CPA 6-1-1308; Cal. Civ. Code 1798.121
+        explain: >-
+          Several states require opt-in consent to process sensitive data (such as health, biometric and children's
+          data); California gives a right to limit the use of sensitive personal information.
+      - id: us_profiling
+        when:
+          decision_mode: [acts_with_review, fully_automatic]
+          flag: about_individuals
+        title: Opt-out of profiling for significant decisions
+        source: VCDPA 59.1-577; CPA 6-1-1306
+        explain: >-
+          Virginia and Colorado give consumers the right to opt out of profiling in furtherance of decisions that
+          produce legal or similarly significant effects.
+      - id: us_dpa
+        when:
+          any:
+            - {flag: profiling}
+            - {data_any: [health, biometric, children]}
+        title: Data protection assessment
+        source: VCDPA 59.1-580; CPA 6-1-1309
+        explain: Processing sensitive data, or profiling that presents risks of harm, needs a documented data protection assessment.
+      - id: us_biometric
+        when: {data_any: [biometric]}
+        title: Biometric privacy laws
+        source: Illinois BIPA (740 ILCS 14)
+        explain: Illinois requires informed written consent and a public retention policy before collecting biometric identifiers.
+      - id: us_children
+        when: {data_any: [children]}
+        title: Children under 13 online
+        source: COPPA (15 U.S.C. 6501-6506)
+        explain: Online services directed to children under 13, or knowingly collecting their data, need verifiable parental consent.
+      - id: us_contract
+        when: {vendor: true}
+        title: Service-provider contract
+        source: Cal. Civ. Code 1798.100(d); VCDPA 59.1-579; CPA 6-1-1305
+        explain: The vendor contract must limit its use of the personal data to the services we buy.
