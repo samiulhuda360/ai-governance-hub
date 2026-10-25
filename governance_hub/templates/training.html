@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Training{% endblock %}
+{% block body %}
+<h1>Training and adoption</h1>
+<p class="muted">Short guides for each tool, and who finished them. The EU AI Act asks organisations to make sure staff using AI have enough AI literacy (Art. 4); the NIST framework asks for AI risk training (GOVERN 2.2).</p>
+<div class="grid g2">
+<div class="card"><h2>Trained staff use the tools more</h2>{{ svg|safe }}
+<p class="small">Active in the last 4 weeks: <b>{{ eff.trained_active|pct }}</b> of staff who finished a tool's training vs <b>{{ eff.untrained_active|pct }}</b> of those who did not. Correlation across tools r = {{ '%.2f'|format(eff.tool_r) }}. <span class="muted">Synthetic demo data: the dashboard is real, the effect is built into the data.</span></p></div>
+<div class="card"><h2>Completion by tool</h2><div class="scroll"><table><tr><th>Tool</th><th class="r">Finished training</th><th class="r">Weekly active</th><th></th></tr>
+{% for t in tools|sort(attribute='trained_share') %}<tr><td><a href="/register/{{ t.id }}">{{ t.name }}</a></td><td class="r">{{ t.trained_share|pct }}</td><td class="r">{{ t.adoption|pct }}</td><td>{% if t.under_used %}<span class="badge flag">Under-used</span>{% endif %}</td></tr>{% endfor %}
+</table></div></div></div>
+<div class="card"><h2>Catalogue</h2><div class="scroll"><table><tr><th>Tool</th><th>Guide</th><th>Length</th><th>What it covers</th><th class="r">Completed</th></tr>
+{% for g in guides %}<tr><td>{{ g.tool }}</td><td><b>{{ g.title }}</b></td><td>{{ g.minutes }} min {{ g.kind }}</td><td class="small">{{ g.summary }}</td><td class="r">{{ g.done }} / {{ g.eligible }}</td></tr>{% endfor %}
+</table></div></div>
+{% endblock %}

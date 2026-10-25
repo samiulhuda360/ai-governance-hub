@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}AI Governance Hub{% endblock %} · {{ company }}</title>
+<link rel="stylesheet" href="/static/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f6b62'/%3E%3Cpath d='M9 17l5 5 9-11' stroke='white' stroke-width='3' fill='none'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="top"><div class="inner">
+  <a class="brand" href="/"><span class="mark">AI</span> Governance Hub <span class="muted small">· {{ company }}</span></a>
+  {% if me %}
+  {% set path = request.url.path %}
+  <nav class="main">
+    <a href="/dashboard" class="{{ 'on' if path.startswith('/dashboard') }}">Dashboard</a>
+    <a href="/intake" class="{{ 'on' if path.startswith('/intake') }}">New idea</a>
+    <a href="/submissions" class="{{ 'on' if path.startswith('/submissions') }}">Approvals</a>
+    <a href="/register" class="{{ 'on' if path.startswith('/register') }}">AI register</a>
+    <a href="/training" class="{{ 'on' if path.startswith('/training') }}">Training</a>
+    <a href="/report" class="{{ 'on' if path.startswith('/report') }}">Monthly report</a>
+    <a href="/audit" class="{{ 'on' if path.startswith('/audit') }}">Audit log</a>
+  </nav>
+  <div class="who"><span>{{ me.name }} · <b>{{ ROLES[me.role] }}</b></span>
+    <form method="post" action="/signout"><button class="btn ghost" style="padding:.25rem .6rem">Switch user</button></form></div>
+  {% endif %}
+</div></header>
+<main>
+{% if notice %}<div class="notice {{ 'err' if notice.startswith('Not allowed') }}">{{ notice }}</div>{% endif %}
+{% block body %}{% endblock %}
+<p class="muted small" style="margin-top:2rem">Demo data for an invented company, as of {{ as_of }}. The hub supports governance decisions; it is not legal advice.</p>
+</main>
+</body>
+</html>

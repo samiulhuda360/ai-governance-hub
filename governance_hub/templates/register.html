@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}AI register{% endblock %}
+{% block body %}
+<h1>AI register</h1>
+<p class="muted">Every approved AI tool, its owner and its next review. High-risk tools are reviewed every 6 months, medium every 12 and low every 24.</p>
+<div class="card"><div class="scroll"><table>
+<tr><th>Tool</th><th>Owner</th><th>Risk</th><th>EU AI Act</th><th>Vendor / model</th><th>Data</th><th>Region</th><th>Status</th><th>Next review</th></tr>
+{% for r in rows %}<tr>
+<td><a href="/register/{{ r.id }}">{{ r.name }}</a><div class="muted small">{{ r.team }}</div></td><td>{{ r.owner }}</td>
+<td><span class="badge lv-{{ r.level }}">{{ r.level }}</span></td><td>{{ r.tier }}{% if r.annex_point %}<div class="muted small">{{ r.annex_point }}</div>{% endif %}</td>
+<td>{{ r.vendor }}{% if r.model %}<div class="muted small">{{ r.model }}</div>{% endif %}</td><td class="small">{{ (r.data|fromjson)|join(', ') or 'none about people' }}</td><td>{{ r.region }}</td>
+<td><span class="badge st st-{{ r.status }}">{{ r.status }}</span></td>
+<td>{% if r.status != 'retired' and r.review_due < as_of %}<span class="badge flag">Overdue</span> {% endif %}{{ r.review_due if r.status != 'retired' else '-' }}</td></tr>{% endfor %}
+</table></div></div>
+{% endblock %}

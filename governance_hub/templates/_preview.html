@@ -1,0 +1,13 @@
+<div class="row"><span class="badge lv-{{ a.level }}" style="font-size:.95rem">{{ a.level|capitalize }} risk</span><span class="muted small">{{ a.score }} points</span></div>
+<p class="small" style="margin-top:.5rem">{{ a.summary() }}</p>
+{% if a.tier == 'prohibited' %}
+  <div class="finding bad"><b>{{ a.prohibited[0].title }}</b><br><span class="small">{{ a.prohibited[0].explain }}</span><br><span class="src">{{ a.prohibited[0].source }}</span></div>
+  <p class="small"><b>This idea will be blocked.</b> Nobody can approve it.</p>
+{% else %}
+  <h3>Who approves</h3>
+  <ol class="small" style="margin:.2rem 0 .6rem 1.1rem;padding:0">{% for s in steps %}<li>{{ ROLES[s] }}</li>{% endfor %}</ol>
+  <h3>Why</h3>
+  {% for d in a.drivers %}<div class="small">{% if d.points %}<b>+{{ d.points }}</b> {% endif %}{{ d.reason }}{% if d.at_least %} <span class="muted">(at least {{ d.at_least }})</span>{% endif %}<br><span class="src">{{ d.source }}</span></div>{% else %}<p class="small muted">Nothing raises the risk.</p>{% endfor %}
+  <h3>Controls required</h3>
+  <ul class="small" style="margin:.2rem 0;padding-left:1.1rem">{% for c in a.controls if c.required %}<li>{{ c.name }}</li>{% else %}<li class="muted">None beyond the basics.</li>{% endfor %}</ul>
+{% endif %}

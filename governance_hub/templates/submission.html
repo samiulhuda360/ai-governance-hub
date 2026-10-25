@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}{{ s.title }}{% endblock %}
+{% block body %}
+<div class="row"><h1>{{ s.title }}</h1><span class="badge lv-{{ s.level }}" style="font-size:.9rem">{{ s.level|capitalize }} risk</span><span class="badge st st-{{ s.status }}">{{ s.status.replace('_', ' ') }}</span></div>
+<p class="muted">{{ s.team }} · submitted by {{ s.requester }} on {{ s.created_at[:10] }}{% if reg %} · <a href="/register/{{ reg.id }}">in the AI register</a>{% endif %}</p>
+<p>{{ a.summary }}</p>
+<div class="layout">
+<div>
+  {% if a.tier == 'prohibited' %}
+  <div class="card"><h2>Blocked</h2>{% for f in a.prohibited %}<div class="finding bad"><b>{{ f.title }}</b><p class="small">{{ f.explain }}</p><span class="src">{{ f.source }}</span></div>{% endfor %}
+  <p class="small">The hub blocks prohibited practices at submission. The idea can be changed and submitted again; for example, emotion recognition for a genuine medical or safety reason is treated differently.</p></div>
+  {% endif %}
+
+  {% if a.tier != 'prohibited' %}<div class="card"><h2>EU AI Act: {{ {'prohibited': 'prohibited practice', 'high': 'high-risk', 'limited': 'transparency duties', 'minimal': 'minimal risk'}[a.tier] }}{% if a.annex_point %} ({{ a.annex_point }}){% endif %}</h2>
+    {% for f in a.high_risk %}<div class="finding hi"><b>{{ f.title }}</b><p class="small">{{ f.explain }}</p><span class="src">{{ f.source }}</span></div>{% endfor %}
+    {% if a.exception %}<div class="finding ok"><b>{{ a.exception.title }}</b><p class="small">{{ a.exception.explain }}</p><span class="src">{{ a.exception.source }}</span></div>{% endif %}
+    {% for f in a.transparency %}<div class="finding"><b>{{ f.title }}</b><p class="small">{{ f.explain }}</p><span class="src">{{ f.source }}</span></div>{% endfor %}
+    {% if a.tier == 'minimal' and not a.exception %}<p class="small">None of the banned practices (Art. 5), high-risk uses (Art. 6, Annex III) or transparency duties (Art. 50) apply to these answers.</p>{% endif %}
+    {% if a.duties %}<h3>Duties for us as the organisation using it</h3>{% for f in a.duties %}<div class="finding"><b>{{ f.title }}</b><p class="small">{{ f.explain }}</p><span class="src">{{ f.source }}</span></div>{% endfor %}{% endif %}
+  </div>{% endif %}
+
+  <div class="card"><h2>Privacy laws to check</h2>
+    {% for r in a.regimes %}<details {{ 'open' if loop.first }}><summary>{{ r.name }} <span class="muted small">({{ r.law }}, {{ r.obligations|length }} points)</span></summary>
+      {% if r.transfer_note %}<p class="small"><b>Where the data goes:</b> {{ r.transfer_note }}</p>{% endif %}
+      {% for f in r.obligations %}<div class="finding"><b>{{ f.title }}</b><p class="small">{{ f.explain }}</p><span class="src">{{ f.source }}</span></div>{% endfor %}
+    </details>{% else %}<p class="small muted">No information about identifiable people, so no privacy law is triggered by these answers.</p>{% endfor %}
+  </div>
+
+  <div class="card"><h2>NIST AI Risk Management Framework checks</h2>
+    {% for fn, checks in a.nist.items() %}<h3>{{ fn }}</h3><ul class="small" style="padding-left:1.1rem;margin:.2rem 0">{% for c in checks %}<li>{{ c.title }} <span class="src">{{ c.source }}</span></li>{% endfor %}</ul>{% endfor %}
+  </div>
+
+  <div class="card"><h2>The answers given</h2>
+    <dl class="kv">
+      <dt>Purpose</dt><dd>{{ it.purpose }}</dd>
+      <dt>Kind of job</dt><dd>{{ USE_AREAS[it.use_area] }}</dd>
+      <dt>Information used</dt><dd>{{ it.data_categories|join(', ') or 'none about people' }}</dd>
+      <dt>Affects</dt><dd>{{ it.affected|join(', ') or 'nobody named' }}</dd>
+      <dt>Decision</dt><dd>{{ it.decision_mode.replace('_', ' ') }}</dd>
+      <dt>Vendor / model</dt><dd>{{ it.vendor or '-' }} {{ ('/ ' ~ it.model) if it.model }}</dd>
+      <dt>Processed in</dt><dd>{{ REGIONS[it.processing_region] }}; people in {{ it.people_regions|join(', ') or '-' }}; organisation in {{ it.org_regions|join(', ') or '-' }}</dd>
+      <dt>Expected benefit</dt><dd>{{ it.expected_users }} users, {{ it.hours_saved_per_week }} hours a week</dd>
+      <dt>Yes answers</dt><dd>{{ it.flags|join(', ') or 'none' }}</dd>
+      {% if prefilled %}<dt>Suggested by AI</dt><dd>{{ prefilled|join(', ') }} <span class="muted small">(each confirmed by {{ s.requester }})</span></dd>{% endif %}
+    </dl>
+  </div>
+</div>
+
+<aside>
+  <div class="card"><h2>Risk level: {{ s.level }}</h2>
+    <p class="small muted">{{ a.score }} points. 2-8 points is medium, 9 or more is high; some findings set a minimum level.</p>
+    {% for d in a.drivers %}<div class="small" style="margin:.35rem 0">{% if d.points %}<b>+{{ d.points }}</b> {% endif %}{{ d.reason }}{% if d.at_least %} <span class="muted">(at least {{ d.at_least }})</span>{% endif %}<br><span class="src">{{ d.source }}</span></div>{% endfor %}
+  </div>
+
+  {% if steps %}<div class="card"><h2>Approval route</h2><ol class="steps">
+    {% for st in steps %}<li><span class="dotnum {{ 'done' if st.status == 'approved' else 'no' if st.status == 'rejected' }}">{{ st.step }}</span>
+      <div><b>{{ ROLES[st.role] }}</b><div class="small muted">{% if st.status == 'pending' %}waiting{% else %}{{ st.status }} by {{ st.approver }} on {{ st.decided_at[:10] }}{% if st.comment %}: "{{ st.comment }}"{% endif %}{% endif %}</div></div></li>{% endfor %}
+  </ol>
+  {% if s.status == 'in_review' %}
+    {% if why_not %}<p class="small muted" style="margin-top:.6rem">{{ why_not }}</p>
+    {% else %}<form method="post" action="/submissions/{{ s.id }}/decide" style="margin-top:.6rem">
+      <label for="comment">Comment</label><input type="text" id="comment" name="comment" placeholder="Optional">
+      <div class="row" style="margin-top:.5rem"><button class="btn" name="decision" value="approve" id="approve">Approve step {{ step.step }}</button><button class="btn warn" name="decision" value="reject">Reject</button></div>
+    </form>{% endif %}
+  {% endif %}
+  </div>{% endif %}
+
+  {% if ctrls %}<div class="card"><h2>Controls checklist</h2>
+    <p class="small muted">Required controls must all be done before the AI governance lead can approve a high-risk idea.</p>
+    {% for c in ctrls %}<div style="border-bottom:1px dashed var(--line);padding:.45rem 0">
+      <div class="row"><span>{{ '✅' if c.done else '⬜' }}</span><b class="small">{{ c.name }}</b>{% if c.required %}<span class="badge st">required</span>{% endif %}</div>
+      <div class="src">{{ c.source }}</div>
+      {% if c.done %}<div class="small muted">{{ c.evidence }} ({{ c.done_by_name }}, {{ c.done_at[:10] }})</div>{% endif %}
+      {% if s.status == 'in_review' and me.role != 'auditor' and not c.done %}<form method="post" action="/submissions/{{ s.id }}/controls/{{ c.control_id }}" class="row" style="margin-top:.3rem">
+        <input type="hidden" name="done" value="1"><input type="text" name="evidence" placeholder="What was done (link or note)" style="flex:1;min-width:140px"><button class="btn ghost">Mark done</button></form>{% endif %}
+    </div>{% endfor %}
+  </div>{% endif %}
+
+  <div class="card"><h2>History</h2>{% for l in log %}<div class="small" style="margin:.3rem 0"><span class="mono">{{ l.ts.replace('T', ' ')[:16] }}</span> <b>{{ l.actor }}</b> {{ l.action }}</div>{% endfor %}<a class="small" href="/audit">Full audit log</a></div>
+</aside>
+</div>
+{% endblock %}

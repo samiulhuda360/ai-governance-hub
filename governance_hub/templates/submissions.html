@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Approvals{% endblock %}
+{% block body %}
+<h1>Approvals</h1>
+<div class="card"><h2>Waiting for you</h2>
+{% if waiting %}<ul>{% for r in waiting %}<li><a href="/submissions/{{ r.id }}">{{ r.title }}</a> <span class="badge lv-{{ r.level }}">{{ r.level }}</span> <span class="muted small">from {{ r.requester }}, {{ r.created_at[:10] }}</span></li>{% endfor %}</ul>
+{% else %}<p class="muted">Nothing is waiting for {{ me.name }} ({{ ROLES[me.role] }}).</p>{% endif %}</div>
+<div class="card"><h2>All submissions</h2><div class="scroll"><table>
+<tr><th>Idea</th><th>Team</th><th>Requester</th><th>Risk</th><th>EU AI Act</th><th>Status</th><th>Submitted</th></tr>
+{% for r in rows %}<tr><td><a href="/submissions/{{ r.id }}">{{ r.title }}</a></td><td>{{ r.team }}</td><td>{{ r.requester }}</td>
+<td><span class="badge lv-{{ r.level }}">{{ r.level }}</span></td><td>{{ r.tier }}</td><td><span class="badge st st-{{ r.status }}">{{ r.status.replace('_', ' ') }}</span></td><td>{{ r.created_at[:10] }}</td></tr>{% endfor %}
+</table></div></div>
+{% endblock %}

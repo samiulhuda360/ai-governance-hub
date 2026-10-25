@@ -88,9 +88,7 @@ def _hash(prev: str, fields: list[Any]) -> str:
     return hashlib.sha256((prev + "|" + json.dumps(fields, sort_keys=True, ensure_ascii=False)).encode()).hexdigest()
 
 
-def audit(
-    conn: sqlite3.Connection, ts: str, actor: sqlite3.Row | None, action: str, entity: str, entity_id: int | None, before: Any, after: Any
-) -> None:
+def audit(conn: sqlite3.Connection, ts: str, actor: sqlite3.Row | None, action: str, entity: str, entity_id: int | None, before: Any, after: Any) -> None:
     """Append one entry. Called inside the same transaction as the change it records."""
     last = conn.execute("SELECT hash FROM audit_log ORDER BY id DESC LIMIT 1").fetchone()
     prev = last["hash"] if last else "genesis"

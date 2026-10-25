@@ -3,6 +3,7 @@ every mark has a hover title. Pages show the same numbers in a table next to eac
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from html import escape
 
 
@@ -10,7 +11,7 @@ def _fmt(v: float) -> str:
     return f"{v:,.0f}"
 
 
-def line(points: list[tuple[str, float]], label: str, width: int = 640, height: int = 220) -> str:
+def line(points: Sequence[tuple[str, float]], label: str, width: int = 640, height: int = 220) -> str:
     """One series over time (single series, so the title names it and no legend is needed)."""
     if not points:
         return ""
@@ -35,16 +36,13 @@ def line(points: list[tuple[str, float]], label: str, width: int = 640, height: 
     ticks = "".join(f'<text x="{x(i):.1f}" y="{height - 8}" class="tick" text-anchor="middle">{escape(d[5:])}</text>' for i, (d, _v) in enumerate(points) if i % 4 == 0)
     hits = "".join(
         f'<g class="hit"><rect x="{x(i) - w / n / 2:.1f}" y="{pad_t}" width="{w / n:.1f}" height="{h}" fill="transparent"/>'
-        f'<circle cx="{x(i):.1f}" cy="{y(v):.1f}" r="4" class="dot s1"/><title>Week of {escape(d)}: {_fmt(v)} {escape(label)}</title></g>'
+        f'<circle cx="{x(i):.1f}" cy="{y(v):.1f}" r="4" class="hov s1"/><title>Week of {escape(d)}: {_fmt(v)} {escape(label)}</title></g>'
         for i, (d, v) in enumerate(points)
     )
-    return (
-        f'<svg viewBox="0 0 {width} {height}" class="chart" role="img" aria-label="{escape(label)} by week">{grid}'
-        f'<path d="{path}" class="ln s1"/>{ticks}{hits}</svg>'
-    )
+    return f'<svg viewBox="0 0 {width} {height}" class="chart" role="img" aria-label="{escape(label)} by week">{grid}<path d="{path}" class="ln s1"/>{ticks}{hits}</svg>'
 
 
-def paired_bars(rows: list[tuple[str, float, float]], names: tuple[str, str], width: int = 640) -> str:
+def paired_bars(rows: list[tuple[str, float, float]], names: tuple[str, str], width: int = 1060) -> str:
     """Two values per row (for example estimated vs measured hours), horizontal bars, legend on top."""
     if not rows:
         return ""

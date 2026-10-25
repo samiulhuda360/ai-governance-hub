@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}New AI idea{% endblock %}
+{% macro confirm(field) %}{% if field in suggested %}<label class="confirm"><input type="checkbox" name="confirm_{{ field }}" value="1"> Checked: this suggested answer is right</label>{% endif %}{% endmacro %}
+{% macro wrap(field) %}{% if field in suggested %}sug{% endif %}{% endmacro %}
+{% block body %}
+<h1>Submit an idea for using AI</h1>
+<p class="muted">Answer in plain words. The hub works out the risk, the laws to check and who needs to approve it, and shows its reasons as you go.</p>
+{% if error %}<div class="notice err">{{ error }}</div>{% endif %}
+<div class="layout">
+<div>
+  <form class="card noprint" method="post" action="/intake/prefill">
+    <h2>Optional: describe it in your own words</h2>
+    <p class="muted small">An AI model reads your description and suggests answers for the form below. You check and confirm every suggestion; nothing is submitted until you do. The risk assessment itself never uses AI.</p>
+    <textarea name="text" id="text" placeholder="What would the AI do, for whom, with what information?">{{ text }}</textarea>
+    <div class="row" style="margin-top:.5rem"><button class="btn" id="suggest">Suggest answers</button>
+      <button type="button" class="btn ghost" id="example" data-example="{{ example }}">Use an example</button></div>
+    {% if suggested %}<p class="small" style="margin-top:.6rem"><b>{{ suggested|length }} answers suggested</b>, highlighted below. Tick "Checked" on each one.{% if dropped %} Ignored values the form does not allow: {{ dropped|join(', ') }}.{% endif %}</p>{% endif %}
+  </form>
+
+  <form class="card" method="post" action="/intake" id="intake">
+    <input type="hidden" name="suggested" value="{{ suggested|join(',') }}">
+    <fieldset><legend>The idea</legend>
+      <div class="{{ wrap('title') }}"><label for="title">Short name</label><input type="text" id="title" name="title" value="{{ v.title or '' }}" required>{{ confirm('title') }}</div>
+      <div class="{{ wrap('purpose') }}"><label for="purpose">What will the AI do?</label><textarea id="purpose" name="purpose" required>{{ v.purpose or '' }}</textarea>{{ confirm('purpose') }}</div>
+      <div class="{{ wrap('team') }}"><label for="team">Team</label><select id="team" name="team">{% for t in teams %}<option {{ 'selected' if v.team == t }}>{{ t }}</option>{% endfor %}{% if v.team and v.team not in teams %}<option selected>{{ v.team }}</option>{% endif %}</select>{{ confirm('team') }}</div>
+      <div class="{{ wrap('use_area') }}"><label for="use_area">What kind of job does it do?</label><select id="use_area" name="use_area">{% for k, label in USE_AREAS.items() %}<option value="{{ k }}" {{ 'selected' if v.use_area == k }}>{{ label }}</option>{% endfor %}</select>{{ confirm('use_area') }}</div>
+    </fieldset>
+    <fieldset class="{{ wrap('data_categories') }}"><legend>Which information does it use?</legend>
+      {% for k, label in DATA.items() %}<label class="check"><input type="checkbox" name="data_categories" value="{{ k }}" {{ 'checked' if k in (v.data_categories or []) }}> {{ label }}</label>{% endfor %}{{ confirm('data_categories') }}</fieldset>
+    <fieldset class="{{ wrap('affected') }}"><legend>Whose lives does its output touch?</legend>
+      {% for k, label in AFFECTED.items() %}<label class="check"><input type="checkbox" name="affected" value="{{ k }}" {{ 'checked' if k in (v.affected or []) }}> {{ label }}</label>{% endfor %}{{ confirm('affected') }}</fieldset>
+    <fieldset class="{{ wrap('decision_mode') }}"><legend>Who makes the decision?</legend>
+      {% for k, label in MODES.items() %}<label class="check"><input type="radio" name="decision_mode" value="{{ k }}" {{ 'checked' if (v.decision_mode or 'suggests') == k }}> {{ label }}</label>{% endfor %}{{ confirm('decision_mode') }}</fieldset>
+    <fieldset><legend>Vendor and where the data goes</legend>
+      <div class="grid g2">
+        <div class="{{ wrap('vendor') }}"><label for="vendor">Vendor or product</label><input type="text" id="vendor" name="vendor" value="{{ v.vendor or '' }}">{{ confirm('vendor') }}</div>
+        <div class="{{ wrap('model') }}"><label for="model">Model (if known)</label><input type="text" id="model" name="model" value="{{ v.model or '' }}">{{ confirm('model') }}</div>
+      </div>
+      <div class="{{ wrap('processing_region') }}"><label for="processing_region">Where is the data processed?</label><select id="processing_region" name="processing_region">{% for k, label in REGIONS.items() %}<option value="{{ k }}" {{ 'selected' if v.processing_region == k }}>{{ label }}</option>{% endfor %}</select>{{ confirm('processing_region') }}</div>
+      <div class="{{ wrap('people_regions') }}"><label>Where are the people whose information it uses?</label><div class="row">{% for k, label in REGIONS.items() %}<label class="check"><input type="checkbox" name="people_regions" value="{{ k }}" {{ 'checked' if k in (v.people_regions or []) }}> {{ label }}</label>{% endfor %}</div>{{ confirm('people_regions') }}</div>
+      <div class="{{ wrap('org_regions') }}"><label>Where is our organisation established?</label><div class="row">{% for k, label in REGIONS.items() %}<label class="check"><input type="checkbox" name="org_regions" value="{{ k }}" {{ 'checked' if k in (v.org_regions or []) }}> {{ label }}</label>{% endfor %}</div>{{ confirm('org_regions') }}</div>
+    </fieldset>
+    <fieldset><legend>Expected benefit</legend><div class="grid g2">
+      <div class="{{ wrap('expected_users') }}"><label for="expected_users">How many staff would use it?</label><input type="number" min="0" id="expected_users" name="expected_users" value="{{ v.expected_users or 0 }}">{{ confirm('expected_users') }}</div>
+      <div class="{{ wrap('hours_saved_per_week') }}"><label for="hours_saved_per_week">Hours saved per week (your estimate)</label><input type="number" min="0" step="0.5" id="hours_saved_per_week" name="hours_saved_per_week" value="{{ v.hours_saved_per_week or 0 }}">{{ confirm('hours_saved_per_week') }}</div>
+    </div></fieldset>
+    <fieldset class="{{ wrap('flags') }}"><legend>A few yes/no questions</legend>
+      <p class="muted small">Tick only the ones that are true. They catch the special cases in the law.</p>
+      {% for k, q in FLAGS.items() %}<label class="check"><input type="checkbox" name="flags" value="{{ k }}" {{ 'checked' if k in (v.flags or []) }}> {{ q }}</label>{% endfor %}{{ confirm('flags') }}</fieldset>
+    <button class="btn" id="submit">Submit for approval</button>
+  </form>
+</div>
+<aside class="card sticky" id="preview-card"><h2>Live assessment</h2><div id="preview"><p class="muted">Fill in the form to see the assessment.</p></div></aside>
+</div>
+<script>
+(() => {
+  const form = document.getElementById('intake'), out = document.getElementById('preview');
+  let t;
+  const run = () => { clearTimeout(t); t = setTimeout(async () => {
+    const r = await fetch('/intake/preview', { method: 'POST', body: new FormData(form) });
+    out.innerHTML = await r.text();
+  }, 200); };
+  form.addEventListener('change', run); form.addEventListener('input', run); run();
+  const ex = document.getElementById('example');
+  ex.addEventListener('click', () => { document.getElementById('text').value = ex.dataset.example; });
+})();
+</script>
+{% endblock %}

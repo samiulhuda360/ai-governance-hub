@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{{ r.name }}{% endblock %}
+{% block body %}
+<div class="row"><h1>{{ r.name }}</h1><span class="badge lv-{{ r.level }}">{{ r.level }} risk</span><span class="badge st st-{{ r.status }}">{{ r.status }}</span>
+{% if r.status != 'retired' and r.review_due < as_of %}<span class="badge flag">Review overdue</span>{% endif %}</div>
+<p class="muted">{{ r.purpose }}</p>
+<div class="grid g2">
+<div class="card"><h2>Register entry</h2><dl class="kv">
+  <dt>Owner</dt><dd>{{ r.owner }} ({{ r.team }})</dd><dt>EU AI Act</dt><dd>{{ r.tier }}{{ (' · ' ~ r.annex_point) if r.annex_point }}</dd>
+  <dt>Vendor / model</dt><dd>{{ r.vendor }} {{ ('/ ' ~ r.model) if r.model }}</dd><dt>Data</dt><dd>{{ (r.data|fromjson)|join(', ') or 'none about people' }}</dd>
+  <dt>Processed in</dt><dd>{{ REGIONS[r.region] }}</dd><dt>Approved</dt><dd>{{ r.approved_at }} · <a href="/submissions/{{ r.submission_id }}">assessment</a></dd>
+  <dt>Last review</dt><dd>{{ r.last_review }}</dd><dt>Next review</dt><dd>{{ r.review_due }}</dd>
+  <dt>Controls in place</dt><dd>{% for c in ctrls if c.done %}{{ c.name }}{{ '; ' if not loop.last }}{% else %}<span class="muted">none recorded</span>{% endfor %}</dd>
+</dl>
+{% if me.role in ('risk_reviewer', 'governance_lead') and r.status != 'retired' %}
+<form method="post" action="/register/{{ r.id }}/review" class="row noprint" style="margin-top:.8rem"><input type="text" name="note" placeholder="Review note" style="flex:1;min-width:160px"><button class="btn ghost">Record a review</button></form>{% endif %}
+{% if me.role == 'governance_lead' %}<form method="post" action="/register/{{ r.id }}/status" class="row noprint" style="margin-top:.5rem">
+  <select name="status" style="width:auto">{% for s in ('pilot','live','retired') %}<option {{ 'selected' if s == r.status }}>{{ s }}</option>{% endfor %}</select><button class="btn ghost">Set status</button></form>{% endif %}
+</div>
+{% if tv %}<div class="card"><h2>Adoption and value</h2>
+<div class="grid g3">
+  <div class="stat"><div class="n">{{ tv.adoption|pct }}</div><div class="l">of {{ tv.eligible }} eligible staff active weekly</div></div>
+  <div class="stat"><div class="n">{{ tv.totals().net|money }}</div><div class="l">net value since {{ tv.months[0].month }}</div></div>
+  <div class="stat"><div class="n">{{ '%.1f'|format(tv.payback_months) if tv.payback_months else '-' }}</div><div class="l">months to pay back setup ({{ tv.setup_cost|money }})</div></div>
+</div>
+<p class="small">Minutes saved per task: <b>{{ tv.est_minutes }}</b> estimated at intake, <b>{{ '%.1f'|format(tv.measured_minutes) if tv.measured_minutes is not none else '-' }}</b> measured in the latest sample. Outputs overridden or edited: {{ tv.override_rate|pct }}; errors found: {{ tv.error_rate|pct }}.</p>
+{% if tv.under_used %}<p class="notice small"><b>Under-used.</b> {{ tv.recommendation }}</p>{% endif %}
+{{ svg|safe }}</div>{% endif %}
+</div>
+{% if tv %}<div class="card"><h2>By month</h2><div class="scroll"><table>
+<tr><th>Month</th><th class="r">Tasks</th><th class="r">Hours (estimated)</th><th class="r">Hours (measured)</th><th class="r">Value</th><th class="r">Cost</th><th class="r">Net</th></tr>
+{% for m in tv.months %}<tr><td>{{ m.month }}</td><td class="r">{{ m.tasks|num }}</td><td class="r">{{ m.est_hours|num }}</td><td class="r">{{ m.measured_hours|num }}</td><td class="r">{{ m.gross|money }}</td><td class="r">{{ m.cost|money }}</td><td class="r">{{ m.net|money }}</td></tr>{% endfor %}
+</table></div></div>{% endif %}
+<div class="grid g2">
+<div class="card"><h2>Training</h2>{% for g in guides %}<div style="margin:.4rem 0"><b>{{ g.title }}</b> <span class="muted small">{{ g.minutes }} min {{ g.kind }}</span><div class="small">{{ g.summary }}</div><div class="small muted">{{ g.done }} of {{ g.eligible }} eligible staff completed</div></div>{% else %}<p class="muted">No training yet.</p>{% endfor %}</div>
+<div class="card"><h2>Incidents</h2>{% for i in incidents %}<div class="finding {{ 'bad' if i.severity == 'high' else 'hi' if i.severity == 'medium' }}"><b class="small">{{ i.happened_on }} · {{ i.severity }} · {{ i.status }}</b><div class="small">{{ i.summary }}</div></div>{% else %}<p class="muted">No incidents recorded.</p>{% endfor %}
+{% if me.role != 'auditor' %}<form method="post" action="/register/{{ r.id }}/incident" class="noprint" style="margin-top:.6rem">
+  <label for="summary">Report an incident</label><input type="text" id="summary" name="summary" placeholder="What happened?" required>
+  <div class="row" style="margin-top:.4rem"><select name="severity" style="width:auto"><option>low</option><option>medium</option><option>high</option></select><button class="btn ghost">Log incident</button></div></form>{% endif %}
+</div></div>
+{% endblock %}

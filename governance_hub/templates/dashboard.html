@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block body %}
+<div class="row" style="margin-bottom:12px"><h1>AI at {{ company }}</h1><span class="spacer"></span><a class="btn" href="/intake">Submit an AI idea</a></div>
+<p class="muted">{{ tools|length }} AI tools in use, {{ months[0] }} to {{ months[-1] }}. Hours are valued at €40 an hour of staff time (an assumption you can change).</p>
+<div class="grid g4">
+  <div class="card stat"><div class="n">{{ totals.measured_hours|num }}</div><div class="l">hours saved, measured<br><span class="small">{{ totals.est_hours|num }} estimated at intake</span></div></div>
+  <div class="card stat"><div class="n">{{ totals.net|money }}</div><div class="l">net value after model and licence costs<br><span class="small">{{ totals.cost|money }} spent</span></div></div>
+  <div class="card stat"><div class="n">{{ by_level.high }} · {{ by_level.medium }} · {{ by_level.low }}</div><div class="l">tools at high · medium · low risk</div></div>
+  <div class="card stat"><div class="n">{{ pending }} / {{ overdue }}</div><div class="l">waiting for approval / reviews overdue</div></div>
+</div>
+<div class="grid g2">
+  <div class="card"><h2>Weekly active users, all tools</h2>{{ adoption_svg|safe }}
+    <details><summary>Show as a table</summary><div class="scroll"><table><tr><th>Week of</th><th class="r">Active users</th><th class="r">Tasks</th></tr>
+    {% for w, a, t in weekly %}<tr><td>{{ w }}</td><td class="r">{{ a }}</td><td class="r">{{ t|num }}</td></tr>{% endfor %}</table></div></details></div>
+  <div class="card"><h2>Does training make a difference?</h2>{{ training_svg|safe }}
+    <p class="small">Staff who finished a tool's training were active in the last 4 weeks <b>{{ eff.trained_active|pct }}</b> of the time, against <b>{{ eff.untrained_active|pct }}</b> for those who had not ({{ eff.trained_n }} and {{ eff.untrained_n }} people across all tools). Across tools, training completion and adoption correlate at r = {{ '%.2f'|format(eff.tool_r) }}. <span class="muted">The demo data is synthetic, so this shows the dashboard working, not a real-world finding.</span></p></div>
+</div>
+<div class="card"><h2>Hours saved per tool: estimated at intake vs measured</h2>
+  <p class="muted small">Measured from a timed sample of tasks each month (time without the tool minus time with it).</p>
+  {{ hours_svg|safe }}</div>
+<div class="card"><h2>Value and adoption by tool</h2><div class="scroll"><table>
+  <tr><th>Tool</th><th>Risk</th><th class="r">Adoption</th><th class="r">Trained</th><th class="r">Est. hours</th><th class="r">Measured hours</th><th class="r">Net value</th><th class="r">Payback</th><th>Action</th></tr>
+  {% for t in tools|sort(attribute='name') %}{% set tt = t.totals() %}
+  <tr><td><a href="/register/{{ t.id }}">{{ t.name }}</a><div class="muted small">{{ t.team }} · {{ t.status }}</div></td>
+  <td><span class="badge lv-{{ t.level }}">{{ t.level }}</span></td>
+  <td class="r">{{ t.adoption|pct }}</td><td class="r">{{ t.trained_share|pct }}</td>
+  <td class="r">{{ tt.est_hours|num }}</td><td class="r">{{ tt.measured_hours|num }}</td><td class="r">{{ tt.net|money }}</td>
+  <td class="r">{{ '%.1f months'|format(t.payback_months) if t.payback_months else 'not paying back' }}</td>
+  <td class="small">{% if t.under_used %}<span class="badge flag">Under-used</span> {{ t.recommendation }}{% endif %}</td></tr>
+  {% endfor %}
+</table></div>
+<p class="muted small">Adoption: average weekly active staff over the last 4 weeks, divided by staff who can use it. Payback: one-off setup cost divided by average monthly net value over the last 3 months.</p></div>
+{% endblock %}

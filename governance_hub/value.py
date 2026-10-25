@@ -89,12 +89,12 @@ class ToolValue:
 
 
 def full_months(conn: sqlite3.Connection) -> list[str]:
-    """Calendar months fully covered by the data, oldest first."""
+    """Calendar months covered by the weekly data (weeks are counted in the month they start), oldest first."""
     as_of = date.fromisoformat(meta(conn, "as_of"))
     first = date.fromisoformat(meta(conn, "first_week"))
     out = []
     y, m = first.year, first.month
-    if first.day != 1:
+    if first.day > 7:  # data starts after the first week of the month: that month is incomplete
         m += 1
         if m > 12:
             y, m = y + 1, 1

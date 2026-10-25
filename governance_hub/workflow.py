@@ -41,14 +41,14 @@ def add_months(d: date, months: int) -> date:
 
 
 def user(conn: sqlite3.Connection, user_id: int) -> sqlite3.Row:
-    row = conn.execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
+    row: sqlite3.Row | None = conn.execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
     if row is None:
         raise PermissionDenied("Unknown user.")
     return row
 
 
 def _sub(conn: sqlite3.Connection, sub_id: int) -> sqlite3.Row:
-    row = conn.execute("SELECT * FROM submissions WHERE id = ?", (sub_id,)).fetchone()
+    row: sqlite3.Row | None = conn.execute("SELECT * FROM submissions WHERE id = ?", (sub_id,)).fetchone()
     if row is None:
         raise PermissionDenied("No such submission.")
     return row
@@ -72,9 +72,7 @@ def submit(conn: sqlite3.Connection, actor: sqlite3.Row, intake: Intake, now: st
         for i, role in enumerate(STEPS.get(a.level, []), start=1):
             conn.execute("INSERT INTO approvals (submission_id, step, role) VALUES (?,?,?)", (sub_id, i, role))
         for c in a.controls:
-            conn.execute(
-                "INSERT INTO controls (submission_id, control_id, name, required, source) VALUES (?,?,?,?,?)", (sub_id, c.id, c.name, int(c.required), c.source)
-            )
+            conn.execute("INSERT INTO controls (submission_id, control_id, name, required, source) VALUES (?,?,?,?,?)", (sub_id, c.id, c.name, int(c.required), c.source))
         audit(conn, now, actor, "submit", "submission", sub_id, None, {"title": intake.title, "tier": a.tier, "level": a.level, "status": status, "prefilled_fields": prefilled or []})
         if status == "blocked":
             audit(conn, now, None, "block", "submission", sub_id, {"status": "submitted"}, {"status": "blocked", "reason": a.summary()})
@@ -130,7 +128,7 @@ def decide(conn: sqlite3.Connection, actor: sqlite3.Row, sub_id: int, approve: b
     with conn:
         conn.execute("UPDATE approvals SET status = ?, approver_id = ?, comment = ?, decided_at = ? WHERE id = ?", (decision, actor["id"], comment, now, step["id"]))
         audit(conn, now, actor, decision, "approval", step["id"], {"step": step["step"], "role": step["role"], "status": "pending"}, {"status": decision, "comment": comment})
-        new_status = sub["status"]
+        new_status: str = sub["status"]
         if not approve:
             new_status = "rejected"
         elif next_step(conn, sub_id) is None:
@@ -161,7 +159,16 @@ def set_control(conn: sqlite3.Connection, actor: sqlite3.Row, sub_id: int, contr
             "UPDATE controls SET done = ?, evidence = ?, done_by = ?, done_at = ? WHERE submission_id = ? AND control_id = ?",
             (int(done), evidence.strip(), actor["id"], now, sub_id, control_id),
         )
-        audit(conn, now, actor, "control", "submission", sub_id, {"control": control_id, "done": bool(row["done"]), "evidence": row["evidence"]}, {"control": control_id, "done": done, "evidence": evidence.strip()})
+        audit(
+            conn,
+            now,
+            actor,
+            "control",
+            "submission",
+            sub_id,
+            {"control": control_id, "done": bool(row["done"]), "evidence": row["evidence"]},
+            {"control": control_id, "done": done, "evidence": evidence.strip()},
+        )
 
 
 def _register(conn: sqlite3.Connection, actor: sqlite3.Row, sub_id: int, now: str) -> int:
@@ -203,7 +210,16 @@ def record_review(conn: sqlite3.Connection, actor: sqlite3.Row, tool_id: int, no
     due = add_months(date.fromisoformat(now[:10]), review_months(row["level"])).isoformat()
     with conn:
         conn.execute("UPDATE register SET last_review = ?, review_due = ? WHERE id = ?", (now[:10], due, tool_id))
-        audit(conn, now, actor, "review", "register", tool_id, {"last_review": row["last_review"], "review_due": row["review_due"]}, {"last_review": now[:10], "review_due": due, "note": note})
+        audit(
+            conn,
+            now,
+            actor,
+            "review",
+            "register",
+            tool_id,
+            {"last_review": row["last_review"], "review_due": row["review_due"]},
+            {"last_review": now[:10], "review_due": due, "note": note},
+        )
     return due
 
 
@@ -213,7 +229,8 @@ def report_incident(conn: sqlite3.Connection, actor: sqlite3.Row, tool_id: int, 
         raise PermissionDenied("Severity must be low, medium or high.")
     with conn:
         cur = conn.execute(
-            "INSERT INTO incidents (tool_id, happened_on, severity, summary, status, reported_by) VALUES (?,?,?,?, 'open', ?)", (tool_id, happened_on, severity, summary, actor["id"])
+            "INSERT INTO incidents (tool_id, happened_on, severity, summary, status, reported_by) VALUES (?,?,?,?, 'open', ?)",
+            (tool_id, happened_on, severity, summary, actor["id"]),
         )
         iid = int(cur.lastrowid or 0)
         audit(conn, now, actor, "incident", "incident", iid, None, {"tool_id": tool_id, "severity": severity, "summary": summary})

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Audit log{% endblock %}
+{% block body %}
+<div class="row"><h1>Audit log</h1><span class="spacer"></span><a class="btn ghost" href="/audit.csv">Export CSV</a></div>
+<p class="muted">Every action, who did it and when, with the record before and after. Entries cannot be changed or deleted, and each one carries a fingerprint (a SHA-256 hash) of the one before it, so tampering shows.</p>
+<p>{% if chain_ok %}<span class="badge st-approved">✓ Chain intact</span> all {{ chain_n }} entries check out.{% else %}<span class="badge st-blocked">Chain broken</span> at entry {{ chain_n }}.{% endif %}</p>
+<div class="card"><div class="scroll"><table><tr><th>When</th><th>Who</th><th>Action</th><th>Record</th><th>Before</th><th>After</th></tr>
+{% for r in rows %}<tr><td class="mono">{{ r.ts.replace('T', ' ')[:16] }}</td><td>{{ r.actor }}<div class="muted small">{{ r.role.replace('_', ' ') }}</div></td><td>{{ r.action }}</td><td>{{ r.entity }} #{{ r.entity_id }}</td>
+<td class="mono small" style="max-width:240px;overflow-wrap:anywhere">{{ r.before if r.before != '{}' else '' }}</td><td class="mono small" style="max-width:320px;overflow-wrap:anywhere">{{ r.after }}</td></tr>{% endfor %}
+</table></div></div>
+{% endblock %}

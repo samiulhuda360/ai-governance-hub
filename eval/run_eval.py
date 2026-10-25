@@ -29,7 +29,9 @@ REGIMES = ["eu_gdpr", "uk_gdpr", "au_app", "nz_ipp", "us_state"]
 
 
 def load_cases() -> list[dict[str, Any]]:
-    return json.loads((EVAL / "cases_dev.json").read_text(encoding="utf-8")) + json.loads((EVAL / "cases_holdout.json").read_text(encoding="utf-8"))
+    dev: list[dict[str, Any]] = json.loads((EVAL / "cases_dev.json").read_text(encoding="utf-8"))
+    hold: list[dict[str, Any]] = json.loads((EVAL / "cases_holdout.json").read_text(encoding="utf-8"))
+    return dev + hold
 
 
 def pct(n: int, d: int) -> float | None:
@@ -128,7 +130,7 @@ def run() -> dict[str, Any]:
 
 
 def stable(res: dict[str, Any]) -> dict[str, Any]:
-    r = json.loads(json.dumps(res))
+    r: dict[str, Any] = json.loads(json.dumps(res))
     r.pop("replayed_from_cache_this_run", None)
     return r
 

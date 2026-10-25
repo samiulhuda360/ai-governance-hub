@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Sign in{% endblock %}
+{% block body %}
+<div class="card">
+  <h1>Sign in as someone at {{ company }}</h1>
+  <p class="muted">A demo with invented people and data. Pick a person to see the hub through their role. Each role sees the same records but can do different things: a requester submits ideas, a team lead approves their own team's, the risk and privacy reviewer and the AI governance lead approve higher-risk ones, and the auditor can read everything and change nothing.</p>
+</div>
+<div class="users">
+{% for u in users %}
+  <form method="post" action="/demo/signin/{{ u.id }}">
+    <button class="user" data-user="{{ u.name }}">
+      <div class="r">{{ ROLES[u.role] }}</div>
+      <div><b>{{ u.name }}</b></div>
+      <div class="muted small">{{ u.title }} · {{ u.team }}</div>
+    </button>
+  </form>
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Monthly report {{ r.month_label }}{% endblock %}
+{% block body %}
+<div class="row noprint" style="margin-bottom:12px"><form method="get" class="row"><label for="month" style="margin:0">Month</label><select id="month" name="month" style="width:auto" onchange="this.form.submit()">{% for m in months %}<option {{ 'selected' if m == r.month }}>{{ m }}</option>{% endfor %}</select></form>
+<span class="spacer"></span><button class="btn" onclick="window.print()">Print or save as PDF</button></div>
+<div class="card"><h1>AI at {{ r.company }}: {{ r.month_label }}</h1>
+<p class="muted small">Monthly report for the leadership team. Figures are calculated from the hub's records; staff time is valued at €{{ '%.0f'|format(r.hourly_cost) }} an hour.</p>
+{% if r.summary %}<div class="ai-note"><p style="margin:0 0 .3rem">{{ r.summary }}</p><p class="small muted" style="margin:0">{{ r.summary_note }}</p></div>
+{% else %}<p class="small muted">{{ r.summary_note }}</p>{% endif %}</div>
+<div class="grid g4">
+  <div class="card stat"><div class="n">{{ r.by_level.high + r.by_level.medium + r.by_level.low }}</div><div class="l">AI tools in use<br><span class="small">{{ r.by_level.high }} high · {{ r.by_level.medium }} medium · {{ r.by_level.low }} low risk</span></div></div>
+  <div class="card stat"><div class="n">{{ r.month_totals.measured_hours|num }}</div><div class="l">hours saved, measured<br><span class="small">{{ r.month_totals.est_hours|num }} estimated at intake</span></div></div>
+  <div class="card stat"><div class="n">{{ r.month_totals.net|money }}</div><div class="l">net value this month<br><span class="small">{{ r.window_totals.net|money }} since {{ months[0] }}</span></div></div>
+  <div class="card stat"><div class="n">{{ r.incidents|length }} / {{ r.overdue|length }}</div><div class="l">incidents this month / reviews overdue</div></div>
+</div>
+<div class="card"><h2>Decisions needed</h2>{% if r.decisions %}<ol>{% for d in r.decisions %}<li>{{ d }}</li>{% endfor %}</ol>{% else %}<p class="muted">None this month.</p>{% endif %}</div>
+<div class="grid g2">
+<div class="card"><h2>Portfolio by risk</h2><table><tr><th>Tool</th><th>Risk</th><th>EU AI Act</th><th class="r">Net value</th></tr>
+{% for t in r.tools|sort(attribute='name') %}{% set mt = t.totals([r.month]) %}<tr><td>{{ t.name }}</td><td><span class="badge lv-{{ t.level }}">{{ t.level }}</span></td><td>{{ t.tier }}</td><td class="r">{{ mt.net|money }}</td></tr>{% endfor %}</table></div>
+<div class="card"><h2>Incidents and reviews</h2>
+<h3>Incidents in {{ r.month_label }}</h3>{% for i in r.incidents %}<p class="small"><b>{{ i.tool }}</b> ({{ i.severity }}, {{ i.status }}): {{ i.summary }}</p>{% else %}<p class="small muted">None.</p>{% endfor %}
+<h3>Still open</h3>{% for i in r.open_incidents %}<p class="small"><b>{{ i.tool }}</b> ({{ i.severity }}, since {{ i.happened_on }}): {{ i.summary }}</p>{% else %}<p class="small muted">None.</p>{% endfor %}
+<h3>Reviews overdue</h3>{% for o in r.overdue %}<p class="small"><b>{{ o.name }}</b>: due {{ o.review_due }} ({{ o.level }} risk)</p>{% else %}<p class="small muted">None.</p>{% endfor %}
+<h3>Waiting for approval</h3>{% for p in r.pending %}<p class="small">{{ p.title }} <span class="badge lv-{{ p.level }}">{{ p.level }}</span></p>{% else %}<p class="small muted">None.</p>{% endfor %}
+{% if r.blocked %}<h3>Blocked this month</h3>{% for b in r.blocked %}<p class="small">{{ b.title }}</p>{% endfor %}{% endif %}
+</div></div>
+<div class="card"><h2>Adoption and training</h2><p class="small">Staff who finished a tool's training were active in the last 4 weeks {{ r.training.trained_active|pct }} of the time, against {{ r.training.untrained_active|pct }} for those who had not.
+{% if r.under_used %}Under-used: {% for t in r.under_used %}{{ t.name }} ({{ t.adoption|pct }} active){{ ', ' if not loop.last }}{% endfor %}.{% endif %}</p></div>
+{% endblock %}

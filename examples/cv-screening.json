@@ -1,0 +1,16 @@
+{
+  "title": "CV screening shortlist helper",
+  "purpose": "Rank applications for warehouse and driver roles against the job requirements; a recruiter reviews every shortlist.",
+  "team": "HR",
+  "use_area": "recruitment",
+  "data_categories": ["personal"],
+  "affected": ["public"],
+  "decision_mode": "suggests",
+  "vendor": "HireSort (invented vendor)",
+  "processing_region": "UK",
+  "people_regions": ["EU", "UK"],
+  "org_regions": ["EU", "UK"],
+  "expected_users": 6,
+  "hours_saved_per_week": 20,
+  "flags": ["about_individuals", "profiling"]
+}
